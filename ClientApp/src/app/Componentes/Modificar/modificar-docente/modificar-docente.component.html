@@ -1,0 +1,171 @@
+<body>
+
+    <div class="contenido">
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Heading -->
+                <h1 class="masthead-heading text-uppercase mb-0">EDITAR DOCENTE</h1>
+
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            </div>
+        </header>
+        <br>
+        <!-- FORMATO-->
+        <div
+            class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">EDITAR DOCENTE</h1>
+        </div>
+        <!-- Contact Section Form -->
+        <div class="row" *ngIf="docente">
+            <div>
+                <h1 class="h2">Detalle Docente</h1>
+            </div>
+            <br>
+            <div class="col-lg-8 mx-auto">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                <div class="form-row">
+                    <div class="col">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Tipo de documento:
+                                    {{docente.tipo_Documento}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Identificacion:
+                                    {{docente.identificacion}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Primer Nombre:</label>
+                                    <input [(ngModel)]="docente.primer_Nombre" name="primer" class="form-control"
+                                        placeholder="DIGITE PRIMER NOMBRE" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Segundo Nombre:</label>
+                                    <input [(ngModel)]="docente.segundo_Nombre" name="segundo" class="form-control"
+                                        placeholder="DIGITE SEGUNDO NOMBRE" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Primer Apellido:</label>
+                                    <input [(ngModel)]="docente.primer_Apellido" name="primerA" class="form-control"
+                                        placeholder="DIGITE PRIMER APELLIDO" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Segundo Apellido:</label>
+                                    <input [(ngModel)]="docente.segundo_Apellido" name="segundoA" class="form-control"
+                                        placeholder="DIGITE SEGUNDO APELLIDO" type="text" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Fecha Nacimiento: </label>
+                                    <input [(ngModel)]="docente.fecha_Nacimiento" name="fecha" class="form-control"
+                                        placeholder="" type="date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Genero: </label>
+                                    <select class="browser-default custom-select" id="exampleFormControlSelect1"
+                                        [(ngModel)]="docente.genero" name="gen" type="text">
+                                        <option>FEMENINO</option>
+                                        <option>MASCULINO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Email:</label>
+                            <input [(ngModel)]="docente.email" name="email" class="form-control"
+                                placeholder="DIGITE EMAIL" type="text" />
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Telefono:</label>
+                                    <input [(ngModel)]="docente.telefono" name="telefono" class="form-control"
+                                        placeholder="DIGITE TELEFONO" type="number" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Fecha Vinculacion:</label>
+                                    <input [(ngModel)]="docente.fecha_Vinculacion" name="fecha" class="form-control"
+                                        placeholder="" type="date" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Tipo Docente:</label>
+                            <select [(ngModel)]="docente.tipo_Docente" name="tipo" class="browser-default custom-select"
+                                placeholder="DIGITE TIPO DE DOCENTE" type="text">
+                                <option>CATEDRATICO</option>
+                                <option>PLANTA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button type="submit" (click)="update()" class="btn btn-primary btn-xl"
+                            id="sendMessageButton">ACTUALIZAR</button>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" (click)="delete()" class="btn btn-primary btn-xl"
+                            id="sendMessageButton">ELIMINAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

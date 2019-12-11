@@ -1,0 +1,73 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div>
+    <h1 class="h2">LISTA DE DOCENTES</h1>
+</div>
+<div class="row">
+    <div class="col-6">
+        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="CONSULTAS">
+    </div>
+</div>
+<hr>
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>
+        Tabla de Docentes</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                *ngIf='docentes && docentes.length'>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>Acciones</th>
+                        <th>Tipo Documento</th>
+                        <th>Identificación</th>
+                        <th>Primer Nombre</th>
+                        <!--<th>Segundo Nombre</th>-->
+                        <th>Primer Apellido</th>
+
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Estado</th>
+                        <th>Tipo Docente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let docente of docentes | filtroDocente:searchText; index as i">
+                        <!--
+                            <td>
+                            <a routerLink="/ModificarDocente/{{docente.identificacion}}"><span
+                                    class="table-remove"><button type="button"
+                                        class="btn btn-success btn-rounded btn-sm my-0">Editar</button></span></a>
+                        </td>
+                        -->
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>
+
+                            <a routerLink="/ModificarDocente/{{docente.identificacion}}"><span
+                                    class="table-remove"><button type="button"
+                                        class="btn btn-success btn-rounded btn-sm my-0">Editar</button></span></a>
+
+                        </td>
+                        <td>{{docente.tipo_Documento}}</td>
+                        <td>{{docente.identificacion}}</td>
+                        <td>{{docente.primer_Nombre}}</td>
+        
+                        <td>{{docente.primer_Apellido}}</td>
+  
+                        <td>{{docente.email}}</td>
+                        <td>{{docente.telefono}}</td>
+                
+                        <td>{{docente.estadoSys}}</td>
+                        <td>{{docente.tipo_Docente}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">
+        Modificación Continua
+    </div>
+</div>

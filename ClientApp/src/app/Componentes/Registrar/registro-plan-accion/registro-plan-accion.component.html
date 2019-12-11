@@ -1,1 +1,170 @@
-<p>registro-plan-accion works!</p>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="body">
+
+    <body>
+        <div class="contenido height: 100px">
+            <header class="masthead bg-primary text-white text-center height: 100px">
+                <div class="container d-flex align-items-center flex-column height: 100px">
+                    <!-- Masthead Heading -->
+                    <h1 class="masthead-heading text-uppercase mb-0 height: 100px ">REGISTRAR PLAN DE ACCION</h1>
+
+                    <!-- Icon Divider -->
+                    <div class="divider-custom divider-light">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </body>
+    <hr>
+    <!-- FORMATO-->
+    <hr>
+    <p>SELECCIONE DOCENTE</p>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i>
+            Tabla de Docentes</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                    *ngIf='docentes && docentes.length'>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th>Acciones</th>
+                            <th>Tipo Documento</th>
+                            <th>Identificación</th>
+                            <th>Primer Nombre</th>
+                          
+                            <th>Primer Apellido</th>
+
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th>Estado</th>
+                            <th>Tipo Docente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let docente of docentes | filtroDocente:searchText; index as i">
+                            <!--
+                                <td>
+                                <a routerLink="/ModificarDocente/{{docente.identificacion}}"><span
+                                        class="table-remove"><button type="button"
+                                            class="btn btn-success btn-rounded btn-sm my-0">Editar</button></span></a>
+                            </td>
+                            -->
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>
+                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
+                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
+                                    <label class="s18 text-normal"></label>
+                                </div>
+                            </td>
+                            <td>{{docente.tipo_Documento}}</td>
+                            <td>{{docente.identificacion}}</td>
+                            <td>{{docente.primer_Nombre}}</td>
+
+                            <td>{{docente.primer_Apellido}}</td>
+
+                            <td>{{docente.email}}</td>
+                            <td>{{docente.telefono}}</td>
+
+                            <td>{{docente.estadoSys}}</td>
+                            <td>{{docente.tipo_Docente}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">
+            Modificación Continua
+        </div>
+    </div>
+    <hr>
+
+    <hr>
+    <p>SELECCIONE TIPO DE ACTIVIDAD</p>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i>
+            Tabla de Tipo Actividad</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Ver</th>
+                            <th>Código Tipo Actividad</th>
+                            <th>Nombre Tipo Actividad</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of tipoActividad">
+                            <td>
+                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
+                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
+                                    <label class="s18 text-normal"></label>
+                                </div>
+                            </td>
+                            <td>{{item.cod_TipoActividad}}</td>
+                            <td>{{item.nombre_Actividad}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer small text-muted">
+            Modificación Continua
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h1 class="h2">LISTA DE ACCIONES</h1>
+    </div>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Tabla de Acciones</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Ver</th>
+                            <th>Código Acción</th>
+                            <th>Nombre Acción</th>
+                            <th>Tipo de Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let acciones of acciones">
+                            <td>
+                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
+                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
+                                    <label class="s18 text-normal"></label>
+                                </div>
+                            </td>
+                            <td>{{acciones.cod_Accion}}</td>
+                            <td>{{acciones.nombre_Accion}}</td>
+                            <td>{{acciones.tipo_Accion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">
+            Modificación Continua
+        </div>
+    </div>
+
+</div>

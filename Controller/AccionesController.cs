@@ -33,6 +33,8 @@ namespace DocenteSharpHTTP.Controllers
         {
             return await _context.Acciones.ToListAsync();
         }
+
+        
         // GET: api/Acciones/1
         [HttpGet("{cod_Accion}")]
         public async Task<ActionResult<AccionesItem>> GetAcciones(int cod_Accion)

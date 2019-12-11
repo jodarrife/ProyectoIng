@@ -148,7 +148,7 @@ namespace Proyecto.Migrations
                     cod_Accion = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre_Accion = table.Column<string>(maxLength: 50, nullable: false),
-                    tipoActividadID = table.Column<int>(nullable: false),
+                    tipo_Accion = table.Column<string>(nullable: false),
                     PlanDeAccioncod_Plan_Accion = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

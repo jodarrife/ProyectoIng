@@ -1,0 +1,25 @@
+<div id="mdialTamanio" class="modal-header">
+        <h4 class="modal-title">
+                <p>{{title}}</p>
+            </h4>
+        <button type="button" class="close" arial-label="close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">
+                &times;
+            </span>
+        </button>
+        
+    </div>
+    
+    <div class="modal-body">
+    
+        <div>
+            <app-galeria></app-galeria>
+        </div>
+    
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('close click')">
+            close
+        </button>
+    </div>

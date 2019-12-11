@@ -1,0 +1,59 @@
+<body>
+
+        <div class="contenido">
+            <header class="masthead bg-primary text-white text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    <!-- Masthead Heading -->
+                    <h1 class="masthead-heading text-uppercase mb-0">EDITAR TIPO ACTIVIDAD</h1>
+    
+                    <!-- Icon Divider -->
+                    <div class="divider-custom divider-light">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                </div>
+            </header>
+            <br>
+            <!-- FORMATO-->
+            <div
+                class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">EDITAR TIPO ACTIVIDAD</h1>
+            </div>
+            <!-- Contact Section Form -->
+            <div class="row" *ngIf="tipoactividad">
+                <div>
+                    <h1 class="h2">Detalle Tipo Actividad</h1>
+                </div>
+                <div class="col-lg-8 mx-auto">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <div class="form-group">
+                        <label>Codigo Tipo de Actividad:
+                            {{tipoactividad.cod_TipoActividad}}
+                        </label>
+                    </div>
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Nombre de Tipo Actividad:</label>
+                                <input [(ngModel)]="tipoactividad.nombre_Actividad" name="nombre" class="form-control"
+                                    placeholder="DIGITE NOMBRE TIPO ACTIVIDAD" type="text" />
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="form-group">
+                            <button type="submit" (click)="update()" class="btn btn-primary btn-xl"
+                                id="sendMessageButton">ACTUALIZAR</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" (click)="delete()" class="btn btn-primary btn-xl"
+                                id="sendMessageButton">ELIMINAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>

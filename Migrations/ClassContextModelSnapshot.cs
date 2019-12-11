@@ -34,8 +34,9 @@ namespace Proyecto.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("tipoActividadID")
-                        .HasColumnType("int");
+                    b.Property<string>("tipo_Accion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("cod_Accion");
 

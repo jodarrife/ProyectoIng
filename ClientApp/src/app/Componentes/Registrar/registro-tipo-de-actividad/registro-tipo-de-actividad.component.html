@@ -1,40 +1,58 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<body>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="contenido">
+            <header class="masthead bg-primary text-white text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    <!-- Masthead Heading -->
+                    <h1 class="masthead-heading text-uppercase mb-0">TIPO DE ACTIVIDAD</h1>
+
+                    <!-- Icon Divider -->
+                    <div class="divider-custom divider-light">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                </div>
+            </header>
+            <br>
+            <!-- FORMATO-->
+
+            <div
+                class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">AGREGAR ACTIVIDAD</h1>
+            </div>
+            <!-- Contact Section Form -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Nombre del Tipo de Actividad:</label>
+                            <input formControlName="nombre_Actividad" name="Nombre" class="form-control"
+                                placeholder="DIGITE NOMBRE TIPO DE ACTIVIDAD" type="text"
+                                [ngClass]="{ 'is-invalid': submitted && f.nombre_Actividad.errors }" />
+                            <div *ngIf="submitted && f.nombre_Actividad.errors" class="invalid-feedback">
+                                <div *ngIf="f.nombre_Actividad.errors.required">Nombre es
+                                    requerido</div>
+                                <div *ngIf="f.nombre_Actividad.errors.minlength">Nombre
+                                    requiere mínimo 2 carácteres</div>
+                                <div *ngIf="f.nombre_Actividad.errors.maxlength">Nombre
+                                    requiere maximo 40 carácteres</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
 <hr>
-<div>
-  <!-- FORMATO-->
-  <div class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">ASIGNAR TIPO DE ACTIVIDAD</h1>
-    </div>
-<!-- Contact Section Form -->
-<div class="row">
-    <div class="col-lg-8 mx-auto">
-        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-        <form name="sentMessage" id="contactForm" novalidate="novalidate" name="registar">
-            <div class="control-group">
-                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                    <label>DOCENTE:</label>
-                    <input  name="Nombre" class="form-control" readonly="readonly"
-                        placeholder="SELECCIONE DOCENTE" type="text">
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                    <label>TIPO DE ACTIVIDAD:</label>
-                    <input  name="Nombre" class="form-control" readonly="readonly"
-                        placeholder="SELECCIONE TIPO DE ACTIVIDAD" type="text">
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                    <label>CANTIDAD DE HORAS:</label>
-                    <input [(ngModel)]="acciones.nombre_Accion" name="Nombre" class="form-control"
-                        placeholder="DIGITE NOMBRE ACCIÓN" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <button (click)="add()" type="submit" class="btn btn-primary btn-xl" name="Boton"
-                    id="sendMessageButton">AGREGAR</button>
-            </div>
-        </form>
-    </div>
-</div>

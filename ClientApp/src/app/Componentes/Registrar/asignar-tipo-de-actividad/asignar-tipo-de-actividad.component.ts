@@ -36,10 +36,10 @@ export class AsignarTipoDeActividadComponent implements OnInit {
     this.getAll();
     this.getTipoAc();
     //selecciona
-    $(document).ready(function () {
-      $('input[type="radio"]').change(function () {
-        if ($(this).is(':checked')) {
-          $('input[type="radio"]').not(this).prop('checked', false);
+    $(document).ready(function(){
+      $('input[type="checkbox"]').change(function(){
+          if($(this).is(':checked')){
+              $('input[type="checkbox"]').not(this).prop('checked', false);
 
           var tr = $(this).closest('tr');
 
@@ -54,7 +54,6 @@ export class AsignarTipoDeActividadComponent implements OnInit {
           var tipo_Docente = $(tr).find('td:nth-child(9)').text();
 
           sessionStorage.setItem('identificacion', identificacion);
-
           this.CCdoc();
         }
       })
@@ -99,71 +98,4 @@ export class AsignarTipoDeActividadComponent implements OnInit {
     this.tipoActividadService.getAll().subscribe(tipoActividad => { this.tipoActividad = tipoActividad });
   }
 
-
-
-
-
-
-
-
-
-
-
-  /*
-    metodos(tipoAct:TipoActividad){
-      /*alert(tipoAct JSON.stringify(this.tipoAct.value, null, 4);
-      var user = (document.getElementById("tipoAct.") as HTMLInputElement).value;*/
-  //}
-  /* convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-  buscarCliente() {
-    this.docenteService.get(this.registerForm.value.identificacion).subscribe(docente => {
-      if (docente != null) {
-        this.f['identificacion'].setValue(docente.identificacion);
-        this.f['primer_Nombre'].setValue(docente.primer_Nombre);
-        this.f['primer_Apellido'].setValue(docente.primer_Apellido);
-        this.f['tipo_Docente'].setValue(docente.tipo_Docente);
-        this.f['estadoSys'].setValue(docente.estadoSys);
-      }
-      else {
-        this.openModalCliente();
-      }
-    });
-  }
-  /*Manejo Modal
-  openModalCliente() {
-    this.modalService.open(ModalConsultaDocenteComponent, { size: 'lg' }).result.then((docente) => this.actualizar(docente));
-  }
-  actualizar(docente: Docente) {
-    this.registerForm.controls['identificacion'].setValue(docente.identificacion);
-    this.registerForm.controls['primer_Nombre'].setValue(docente.primer_Nombre);
-    this.registerForm.controls['primer_Apellido'].setValue(docente.primer_Apellido);
-    this.registerForm.controls['tipo_Docente'].setValue(docente.tipo_Docente);
-    this.registerForm.controls['estadoSys'].setValue(docente.estadoSys);
-  }
-  //Fin Manejo Modal
-  //Manejo Registrar
-  onSubmit() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-    this.create();
-  }
-  create() {
-    this.tipoAct = this.registerForm.value;
-    this.tipoActividadService.addTipoActividad(this.tipoAct).subscribe(c => {
-      if (c != null) {
-        const messageBox = this.modalService.open(AlertModalComponent)
-        messageBox.componentInstance.title = "Resultado Operación";
-        messageBox.componentInstance.message = 'SUCCESS!! :-)';
-      }
-    });
-  }
-  onReset() {
-    this.submitted = false;
-    this.registerForm.reset();
-  }
-*/
 }

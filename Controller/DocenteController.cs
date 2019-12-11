@@ -53,6 +53,8 @@ namespace DocenteSharpHTTP.Controllers
         {
             return await _context.Docentes.ToListAsync();
         }
+
+        
         // GET: api/Docente/1003242276
         [HttpGet("{identificacion}")]
         public async Task<ActionResult<DocenteItem>> GetDocentes(string identificacion)

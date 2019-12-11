@@ -1,0 +1,65 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<body>
+    <div class="contenido ">
+        <div class="masthead bg-primary text-white text-center   ">
+            <div class="container d-flex align-items-center flex-column " class="conta color">
+                <!-- Masthead Heading -->
+                <h1 class="masthead-heading text-uppercase mb-0">AYUDA</h1>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            </div>
+        </div>
+        <!-- FORMATO-->
+        <!-- Contact Section -->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Form -->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <div class="control-group">
+                            <div class="form-group">
+                                <label>Correo electrónico:</label>
+                                <input class="form-control" placeholder="DIGITE EMAIL" type="email" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group">
+                                <label>Telefono:</label>
+                                <input class="form-control" placeholder="DIGITE TELEFONO" type="number" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="control-group">
+                        <div class="form-group">
+                            <label>Asunto:</label>
+                            <input class="form-control" placeholder="DIGITE ASUNTO" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div  style="width: 100%;" class="control-group">
+                        <div  style="width: 100%;" class="form-group">
+                            <label>Detalle:</label>
+                            <textarea style="width: 100%;" name="text1" id="textarea1" rows="6" cols="80"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--BOTON-->
+                <button (click)="sendEmail()" type="submit" class="btn btn-primary btn-xl" name="Boton"
+                    id="sendMessageButton">Enviar
+                </button>
+            </div>
+        </section>
+    </div>
+</body>

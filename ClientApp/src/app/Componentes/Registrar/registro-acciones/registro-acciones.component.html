@@ -1,64 +1,78 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<body>
-    <div class="contenido">
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Heading -->
-                <h1 class="masthead-heading text-uppercase mb-0">ACCIONES</h1>
 
-                <!-- Icon Divider -->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                        <i class="fa fa-star"></i>
+<body>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="contenido">
+            <header class="masthead bg-primary text-white text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    <!-- Masthead Heading -->
+                    <h1 class="masthead-heading text-uppercase mb-0">ACCIONES</h1>
+
+                    <!-- Icon Divider -->
+                    <div class="divider-custom divider-light">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
                     </div>
-                    <div class="divider-custom-line"></div>
+                </div>
+            </header>
+            <br>
+            <!-- FORMATO-->
+            <div
+                class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">AGREGAR ACCIÓN</h1>
+            </div>
+            <!-- Contact Section Form -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Nombre del Tipo de Actividad:</label>
+                                    <input formControlName="nombre_Accion" name="Nombre" class="form-control"
+                                        placeholder="DIGITE NOMBRE ACCIÓN" type="text"
+                                        [ngClass]="{ 'is-invalid': submitted && f.nombre_Accion.errors }" />
+                                    <div *ngIf="submitted && f.nombre_Accion.errors" class="invalid-feedback">
+                                        <div *ngIf="f.nombre_Accion.errors.required">Nombre es
+                                            requerido</div>
+                                        <div *ngIf="f.nombre_Accion.errors.minlength">Nombre
+                                            requiere mínimo 2 carácteres</div>
+                                        <div *ngIf="f.nombre_Accion.errors.maxlength">Nombre
+                                            requiere maximo 40 carácteres</div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Tipo de Acción: </label>
+                                <select formControlName="tipo_Accion" class="browser-default custom-select"
+                                    id="exampleFormControlSelect1" name="TipoAccion" type="text"
+                                    [ngClass]="{ 'is-invalid': submitted && f.tipo_Accion.errors }">
+                                    <option value="TUTORÍAS">TUTORÍAS</option>
+                                    <option value="INVESTIGACIÓN">INVESTIGACIÓN</option>
+                                    <option value="EXTENCIÓN">EXTENCIÓN</option>
+                                    <option value="MATERIAL DE APOYO">MATERIAL DE APOYO</option>
+                                    <option value="TRABAJO DE GRADO">TRABAJO DE GRADO</option>
+                                    <option value="COOPERACIÓN INTERINSTITUCIONAL">COOPERACIÓN INTERINSTITUCIONAL
+                                    </option>
+                                    <option value="CRECIMIENTO PROFESIONAL">CRECIMIENTO PROFESIONAL</option>
+                                    <option value="ENCARGO ADMINISTRATIVO">ENCARGO ADMINISTRATIVO</option>
+                                </select>
+                                <div *ngIf="submitted && f.tipo_Accion.errors" class="invalid-feedback">
+                                    <div *ngIf="f.tipo_Accion.errors.required">Tipo Acción requerida</div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">Agregar</button>
+                        </div>
                 </div>
             </div>
-        </header>
-        <br>
-        <!-- FORMATO-->
-        <div
-            class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">AGREGAR ACCIÓN</h1>
         </div>
-        <!-- Contact Section Form -->
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <form name="sentMessage" id="contactForm" novalidate="novalidate" name="registar">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Nombre de Acción:</label>
-                            <input [(ngModel)]="acciones.nombre_Accion" name="Nombre"class="form-control"
-                                placeholder="DIGITE NOMBRE ACCIÓN" type="text">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Tipo de Acción: </label>
-                            <select class="browser-default custom-select" id="exampleFormControlSelect1"  name="TipoAccion"
-                                [(ngModel)]="acciones.tipo_Accion"  type="text">
-                                <option>TUTORÍAS</option>
-                                <option>INVESTIGACIÓN</option>
-                                <option>EXTENCIÓN</option>
-                                <option>MATERIAL DE APOYO</option>
-                                <option>TRABAJO DE GRADO</option>
-                                <option>COOPERACIÓN INTERINSTITUCIONAL</option>
-                                <option>CRECIMIENTO PROFESIONAL</option>
-                                <option>ENCARGO ADMINISTRATIVO</option>
-                            </select>
-                        </div>
-                    </div>
-                    <br>
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <button (click)="add()" type="submit"  class="btn btn-primary btn-xl"  name="Boton"
-                            id="sendMessageButton">AGREGAR</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </form>
 </body>
 <hr>

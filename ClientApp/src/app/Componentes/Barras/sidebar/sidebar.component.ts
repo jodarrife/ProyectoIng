@@ -3,6 +3,11 @@ import * as $ from 'jquery';
 import { UserService } from '../../ComponetesLogin/servicesLogin/user.service';
 import { DocenteService } from '../../services/docente.service';
 import { JefeDepartamentoService } from '../../services/jefe-departamento.service';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AyudaLoginComponent } from '../../Modals/ayuda-login/ayuda-login.component';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -11,6 +16,7 @@ import { JefeDepartamentoService } from '../../services/jefe-departamento.servic
 export class SidebarComponent implements OnInit {
 
   constructor(
+    private modalService:NgbModal,
     private myAwesomeService: UserService,
     private docenteService: DocenteService,
     private jefeService: JefeDepartamentoService) {
@@ -98,5 +104,11 @@ export class SidebarComponent implements OnInit {
     return this.jefeService.getUserName();
   }
   
+  //modal
+  open(){
+    const modalRef = this.modalService.open(AyudaLoginComponent, {centered: true});
+    modalRef.componentInstance.title= 'AYUDA EN LINEA';
+   
+  }
 
 }

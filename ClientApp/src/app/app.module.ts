@@ -59,6 +59,10 @@ import { FiltroAccionesPipe } from './Componentes/Pipes/filtro-acciones.pipe';
 import { FiltroTipoActividadPipe } from './Componentes/Pipes/filtro-tipo-actividad.pipe';
 import { FiltroPlanAccionPipe } from './Componentes/Pipes/filtro-plan-accion.pipe';
 import {UserService} from  '../app/Componentes/ComponetesLogin/servicesLogin/user.service';
+import { ModificarTipoActividadComponent } from './Componentes/Modificar/modificar-tipo-actividad/modificar-tipo-actividad.component';
+import { EnviarEmailComponent } from './Componentes/Complementos/enviar-email/enviar-email.component';
+import { AyudaLoginComponent } from './Componentes/Modals/ayuda-login/ayuda-login.component';
+import { GaleriaComponent } from './Componentes/Complementos/galeria/galeria.component';
 
 
 
@@ -104,6 +108,10 @@ import {UserService} from  '../app/Componentes/ComponetesLogin/servicesLogin/use
     FiltroAccionesPipe,
     FiltroTipoActividadPipe,
     FiltroPlanAccionPipe,
+    ModificarTipoActividadComponent,
+    EnviarEmailComponent,
+    AyudaLoginComponent,
+    GaleriaComponent,
 
     
     
@@ -125,7 +133,8 @@ import {UserService} from  '../app/Componentes/ComponetesLogin/servicesLogin/use
   providers: [UserService],
   bootstrap: [AppComponent],
   entryComponents: [
-    AlertModalComponent
+    AlertModalComponent,
+    AyudaLoginComponent
 ]
 })
 export class AppModule { }

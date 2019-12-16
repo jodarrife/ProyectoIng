@@ -21,89 +21,101 @@
     </header>
     <br>
     <!-- FORMATO-->
-    <div
-      class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">AGREGAR ACCIÓN</h1>
-    </div>
-    <!-- Contact Section Form -->
-    <!--Docente-->
-    <div class="col-sm-2">
-      <h1>Docente </h1>
-    </div>
-    <div class="table-container">
-      <table class="table table-hover table-custom border-radius-total-5 no-margin" id="tablelistaReservas">
-        <thead class="backGris-light-be">
-          <tr class="s20">
-            <th class="no-borders"></th>
-            <th class="no-borders">Tipo Documento</th>
-            <th class="no-borders">Identificación</th>
-            <th class="no-borders">Primer Nombre</th>
-            <th class="no-borders">Primer Apellido</th>
-            <th class="no-borders">Email</th>
-            <th class="no-borders">Telefono</th>
-            <th class="no-borders">Estado</th>
-            <th class="no-borders">Tipo Docente</th>
-          </tr>
-        </thead>
-        <tbody class="backWhite">
-          <tr class="s18 colorGrayLight" *ngFor="let item of docentes">
-            <td>
-              <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
-                <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
-                <label class="s18 text-normal"></label>
-              </div>
-            </td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.tipo_Documento}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.identificacion}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.primer_Nombre}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.primer_Apellido}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.email}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.telefono}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.estadoSys}}</td>
-            <td class="no-pad-top no-pad-bot align-middle">{{item.tipo_Docente}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <hr>
-    <button onclick="location.reload()" type="submit" class="btn btn-success btn-xl" name="Boton"
-      id="sendMessageButton">
-      AGREGAR
-    </button>
-    <hr>
-    <!--Tipo de Actividad-->
-    <div class="col-sm-2">
-      <h1>Tipo de Actividad: </h1>
-    </div>
-    <div class="col-sm-10">
-      <select class="form-control" (change)="mostrarTipoA()" id="referencia" name="referencia"
-        >
-        <option selected="selected">
-          Seleccione...
-        </option>
-        <option *ngFor="let p of tipoActividad" [value]="p.cod_TipoActividad">
-          {{p.nombre_Actividad}}
-        </option>
-      </select>
-    </div>
-    <hr>
-    <!--HORAS-->
-    <div>
-      <h1>Docente elegido tiene la cedula: <a>{{ CCdoc() }}</a></h1>
-      <button type="submit"  class="btn btn-danger btn-xl" name="Boton" (click)="logoutDoc()"
-        id="sendMessageButton">
-        Eliminar Docente Agregado
-      </button>
 
-    </div>
-    <hr>
-    <div>
-      <label>CANTIDAD DE HORAS:</label>
-      <input>
-    </div>
-    <hr>
-    <button (click)="add()" type="submit" class="btn btn-primary btn-xl" name="Boton" id="sendMessageButton">AGREGAR
-    </button>
+    <body>
+      <br />
+      <main role="main" class="container">
+        <form method="">
+          <div class="row">
+            <div class="col-lg-1 "></div>
+
+            <div class="col-lg-6 ">
+              <h1>Asignacion de actividades</h1>
+            </div>
+          </div>
+          <div class="row"></div>
+          <br />
+          <div class="row">
+            <div class="col-lg-3 ">
+              <div class="form-group">
+                <label for="Identificacion">Identificación</label>
+
+                <input type="number" class="form-control form-control-lg " placeholder="identificacion"
+                  name="identificacion" id="identificacion" [(ngModel)]="docente.idDocente" />
+              </div>
+              <div class="form-group ">
+                <label for="nombres">Nombres</label>
+                <input type="text" readonly="readonly" class="form-control form-control-lg" placeholder="Nombres"
+                  name="nombres" id="nombres" [(ngModel)]="docente.nombres" />
+              </div>
+              <div class="form-group">
+                <label for="sexo">Tipo de actividad</label>
+                <select class="form-control" id="sexo" name="sexo" [(ngModel)]="actividad.nombreActividad">
+                  <option value="Tutorias">Tutorias</option>
+                  <option value="Investigación">Investigación</option>
+                  <option value="Extensión">Extensión</option>
+                  <option value="Material de apoyo">Material de apoyo</option>
+                  <option value="Trabajo de grado">Trabajo de grado</option>
+                  <option value="Cooperación institucional">Cooperación Institucional</option>
+                  <option value="Crecimiento personal">Crecimiento Personal</option>
+                  <option value="Encargo administrativo">Encargo Administrativo</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3" style=" padding-top: 25px;">
+              <div class="form-group">
+                <button (click)="getDocente()" class="btn btn-primary">
+                  Buscar
+                </button>
+              </div>
+              <div class="form-group">
+                <label for="Apellidos">Apellidos</label>
+                <input type="text" readonly="readonly" class="form-control form-control-lg" placeholder="Apellidos"
+                  name="Apellidos" id="Apellidos" [(ngModel)]="docente.apellidos" />
+              </div>
+              <div class="form-group">
+                <label for="Horas">Horas</label>
+                <input type="number" class="form-control form-control-lg" placeholder="Horas" name="Horas" id="Horas"
+                  [(ngModel)]="actividad.horasAsignadas" />
+              </div>
+              <div class="form-group" style="text-align: right">
+                <button (click)="addActividad()" class="btn btn-primary">
+                  Agregar
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" id="myTable">
+                  <thead>
+                    <tr>
+                      <th>Identificación Docente</th>
+                      <th>Tipo de actividad</th>
+                      <th>Horas Asignadas</th>
+                      <th>Estado</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let c of actividades">
+                      <td>{{ c.docente.idDocente }}</td>
+                      <td>{{ c.nombreActividad }}</td>
+                      <td>{{ c.horasAsignadas }}</td>
+                      <td>{{c.estado}}</td>
+                      <td><button (click)="Eliminar(c.idActividad)" class="btn" style="color: white;">Eliminar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </form>
+      </main>
+    </body>
+
   </div>
 </body>
 <hr>

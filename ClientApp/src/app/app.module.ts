@@ -63,6 +63,7 @@ import { ModificarTipoActividadComponent } from './Componentes/Modificar/modific
 import { EnviarEmailComponent } from './Componentes/Complementos/enviar-email/enviar-email.component';
 import { AyudaLoginComponent } from './Componentes/Modals/ayuda-login/ayuda-login.component';
 import { GaleriaComponent } from './Componentes/Complementos/galeria/galeria.component';
+import { ReporteComponent } from './Componentes/Complementos/reporte/reporte.component';
 
 
 
@@ -112,6 +113,7 @@ import { GaleriaComponent } from './Componentes/Complementos/galeria/galeria.com
     EnviarEmailComponent,
     AyudaLoginComponent,
     GaleriaComponent,
+    ReporteComponent,
 
     
     

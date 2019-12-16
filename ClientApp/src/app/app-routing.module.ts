@@ -8,7 +8,8 @@ import { LoginComponent } from "./Componentes/ComponetesLogin/login/login.compon
 
 //para cada ruta nos servira cada fichero de estos 
 import { NotFountPageComponent } from "./Componentes/Complementos/not-fount-page/not-fount-page.component";
-
+//eviedncias
+import { ReporteComponent } from "./Componentes/Complementos/reporte/reporte.component";
 
 //registro docente
 import { RegistroDocenteComponent } from "./Componentes/Registrar/registro-docente/registro-docente.component";
@@ -40,6 +41,7 @@ import { ModificarAccionesComponent } from './Componentes/Modificar/modificar-ac
 import { ModificarTipoActividadComponent} from './Componentes/Modificar/modificar-tipo-actividad/modificar-tipo-actividad.component';
 import { AuthguardGuard } from './Componentes/ComponetesLogin/Guard/authguard.guard';
 import { AuthDocenteGuard } from './Componentes/ComponetesLogin/Guard/auth-docente.guard';
+
 
 // Desactivar Acciones
 //crearemos varios objetos para crear las rutas
@@ -127,6 +129,9 @@ const routes: Routes = [
   //Modificar Tipo Actividad
   { path: 'ModificarTipoActividad/:cod_TipoActividad', component: ModificarTipoActividadComponent},
 
+
+  //Evidencias
+  { path: 'Reportes', component: ReporteComponent},
 
 
 

@@ -20,8 +20,7 @@ namespace DocenteSharpHTTP.Controllers
             {
                 _context.Acciones.Add(new AccionesItem
                 {
-                    nombre_Accion = "Comite de Evalaución",
-                    tipo_Accion = "Extensión"
+                  
                 });
                 _context.SaveChanges();
             }
@@ -37,9 +36,9 @@ namespace DocenteSharpHTTP.Controllers
         
         // GET: api/Acciones/1
         [HttpGet("{cod_Accion}")]
-        public async Task<ActionResult<AccionesItem>> GetAcciones(int cod_Accion)
+        public async Task<ActionResult<AccionesItem>> GetAcciones(int codAccion)
         {
-            var accionesItem = await _context.Acciones.FindAsync(cod_Accion);
+            var accionesItem = await _context.Acciones.FindAsync(codAccion);
             if (accionesItem == null)
             {
                 return NotFound();
@@ -52,13 +51,13 @@ namespace DocenteSharpHTTP.Controllers
         {
             _context.Acciones.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetAcciones), new { cod_Accion = item.cod_Accion }, item);
+            return CreatedAtAction(nameof(GetAcciones), new { codAccion = item.codAccion }, item);
         }
         // PUT: api/Acciones/5
         [HttpPut("{cod_Accion}")]
-        public async Task<IActionResult> PutAcciones(int cod_Accion, AccionesItem item)
+        public async Task<IActionResult> PutAcciones(int codAccion, AccionesItem item)
         {
-            if (cod_Accion != item.cod_Accion)
+            if (codAccion != item.codAccion)
             {
                 return BadRequest();
             }
@@ -68,10 +67,10 @@ namespace DocenteSharpHTTP.Controllers
         }
         // DELETE: api/Todo/5
         [HttpDelete("{cod_Accion}")]
-        public async Task<IActionResult> DeleteAcciones(int cod_Accion)
+        public async Task<IActionResult> DeleteAcciones(int codAccion)
         {
             var acciones = await
-            _context.Acciones.FindAsync(cod_Accion);
+            _context.Acciones.FindAsync(codAccion);
             if (acciones == null)
             {
                 return NotFound();

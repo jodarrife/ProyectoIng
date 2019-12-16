@@ -7,21 +7,14 @@ namespace DocenteSharpHTTP.Models
 {
     public class PlanDeAccion
     {
-        public PlanDeAccion() { }
         [Key]
-        public int cod_Plan_Accion { get; set; }
-        [Required, MaxLength(50), MinLength(3)]
-        public string nombre_Plan_Accion { get; set; }
-
-        [Required, MinLength(10)]
-        public string descripcion { get; set; }
-        [Required]
-        public DateTime fecha_Inicio { get; set; }
-        [Required]
-        public DateTime fecha_Final { get; set; }
-        
-        //agregacion
-        public string docenteId { get; set; }
+        public int codPlanAccion { get; set; }
         public List<AccionesItem> acciones { get; set; }
+        public string descripcion { get; set; }
+        public DateTime fecha_Inicio { get; set; }
+        public int idActividadAsignada { get; set; }
+        public ActividadAsignada ActividadAsignada { get; set; }
+
+        
     }
 }

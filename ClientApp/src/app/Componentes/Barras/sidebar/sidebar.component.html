@@ -54,14 +54,14 @@
                   Actividad</a></li>
             </ul>
           </li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#"><i class="icono izquierda fa fa-envelope"></i>Verificar
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i class="icono izquierda fa fa-envelope"></i>Verificar
               Actividades</a></li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#"><i class="icono izquierda fa fa-envelope"></i>Estado de
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i class="icono izquierda fa fa-envelope"></i>Estado de
               Actividades</a></li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/RegistroDocente" routerLinkActive="active">Revisar
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr" routerLinkActive="active">Revisar
               Act. Complementarias</a>
           </li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#"><i class="icono izquierda fa fa-envelope"></i>Reporte
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/Reportes"><i class="icono izquierda fa fa-envelope"></i>Reporte
               Estadisticas</a></li>
 
           <!-- DOCENTE-->
@@ -70,16 +70,14 @@
             <ul>
               <li><a href="#" routerLink="/RegistroPlanDeAccion" routerLinkActive="active">Registrar
                   Plan de Acicón</a></li>
-              <li><a href="#" routerLink="/ConsultaDocente" routerLinkActive="active">Acciones
-                  Plan de Acicón</a></li>
             </ul>
           </li>
           <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Act.
               Complementarias<i class="icono derecha fa fa-chevron-down"></i></a>
             <ul>
-              <li><a href="#" routerLink="/RegistroDocente" routerLinkActive="active">Registrar
+              <li><a href="#" routerLink="/nofr" routerLinkActive="active">Registrar
                   Act. Complementarias</a></li>
-              <li><a href="#" routerLink="/ConsultaDocente" routerLinkActive="active">Consultar
+              <li><a href="#" routerLink="/nofr" routerLinkActive="active">Consultar
                   Act. Complementarias</a></li>
             </ul>
           </li>
@@ -92,14 +90,14 @@
                   Acciones</a></li>
             </ul>
           </li>
-          <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-envelope"></i>Estado de
+          <li *ngIf="isAuthenticatedDoc()"><a href="#" routerLink="/nofr" ><i class="icono izquierda fa fa-envelope"></i>Estado de
               Actividades</a></li>
-          <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Evidencias<i
+          <li *ngIf="isAuthenticatedDoc()"><a href="#" routerLink="/nofr" ><i class="icono izquierda fa fa-star"></i>Gestionar Evidencias<i
                 class="icono derecha fa fa-chevron-down"></i></a>
             <ul>
-              <li><a href="#" routerLink="/Registroeocente" routerLinkActive="active">Registrar
+              <li><a href="#" routerLink="/nofr" routerLinkActive="active">Registrar
                   Evidencias</a></li>
-              <li><a href="#" routerLink="/Consultaocente" routerLinkActive="active">Consultar
+              <li><a href="#"routerLink="/nofr" routerLinkActive="active">Consultar
                   Evidencias</a></li>
             </ul>
           </li>

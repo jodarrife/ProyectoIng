@@ -1,3 +1,5 @@
+namespace DocenteSharpHTTP.Controllers
+{
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,8 +9,7 @@ using System.Threading.Tasks;
 using System;
 using System.Data;
 
-namespace DocenteSharpHTTP.Controllers
-{
+
     [Route("api/[controller]")]
     [ApiController]
     public class DocenteController : ControllerBase
@@ -20,28 +21,28 @@ namespace DocenteSharpHTTP.Controllers
             _context = context;
             if (_context.Docentes.Count() == 0)
             {
+                DocenteItem docente = new DocenteItem();
+                    
+                    docente.identificacion = 1003242276;
+                    docente.tipo_Documento = "CEDULA";
+                    docente.primer_Nombre = "JORGE";
+                    docente.segundo_Nombre = "DANIEL";
+                    docente.primer_Apellido = "RINCONES";
+                    docente.segundo_Apellido = "FERNANDEZ";
+                    docente.fecha_Nacimiento = Convert.ToDateTime("3/11/2000").Date;
+                    docente.genero = "MASCULINO";
+                    docente.email = "jodarrife12@gmail.com";
+                    docente.telefono = 3004128610;
+                    docente.cargo = "DOCENTE";
+                    docente.estadoSys = "ACTIVO";
+                    docente.tipo_Docente = "CATEDRATICO";
+                    docente.user_Name = ""+docente.identificacion;
+                    docente.contrasena = ""+docente.identificacion;
 
                 // Crea un nuevo item si la coleccion esta vacia,
                 // lo que significa que no puedes borrar todos los Items.
                 //_context.Docentes.Add(new DocenteItem { Tipo_Docente = "CATEDRATICO" });
-                _context.Docentes.Add(new DocenteItem
-                {
-                    tipo_Documento = "CEDULA",
-                    identificacion = "1003242276",
-                    primer_Nombre = "JORGE",
-                    segundo_Nombre = "DANIEL",
-                    primer_Apellido = "RINCONES",
-                    segundo_Apellido = "FERNANDEZ",
-                    fecha_Nacimiento = Convert.ToDateTime("3/11/2000").Date,
-                    genero = "MASCULINO",
-                    email = "jodarrife12@gmail.com",
-                    telefono = 3004128610,
-                    cargo = "DOCENTE",
-                    estadoSys = "ACTIVO",
-                    tipo_Docente = "CATEDRATICO",
-                    user_Name = "Docente",
-                    contrasena = "12345"
-                });
+                _context.Docentes.Add(docente);
                 _context.SaveChanges();
             }
         }
@@ -57,7 +58,7 @@ namespace DocenteSharpHTTP.Controllers
         
         // GET: api/Docente/1003242276
         [HttpGet("{identificacion}")]
-        public async Task<ActionResult<DocenteItem>> GetDocentes(string identificacion)
+        public async Task<ActionResult<DocenteItem>> GetDocentes(int identificacion)
         {
             var docenteItem = await _context.Docentes.FindAsync(identificacion);
             if (docenteItem == null)
@@ -90,7 +91,7 @@ namespace DocenteSharpHTTP.Controllers
     
     // PUT: api/Docente/5
     [HttpPut("{identificacion}")]
-    public async Task<IActionResult> PutDocente(string identificacion, DocenteItem item)
+    public async Task<IActionResult> PutDocente(int identificacion, DocenteItem item)
     {
         if (identificacion != item.identificacion)
         {
@@ -102,7 +103,7 @@ namespace DocenteSharpHTTP.Controllers
     }
     // DELETE: api/Todo/5
     [HttpDelete("{identificacion}")]
-    public async Task<IActionResult> DeleteDocente(string identificacion)
+    public async Task<IActionResult> DeleteDocente(int identificacion)
     {
         var docente = await
         _context.Docentes.FindAsync(identificacion);

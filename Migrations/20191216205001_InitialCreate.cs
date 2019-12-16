@@ -108,6 +108,7 @@ namespace Proyecto.Migrations
                 {
                     codigo = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    codTipoActividad = table.Column<string>(nullable: true),
                     DocenteItemId = table.Column<int>(nullable: false),
                     horasAsignadas = table.Column<int>(nullable: false),
                     estado = table.Column<string>(nullable: true)

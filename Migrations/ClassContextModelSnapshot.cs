@@ -52,6 +52,9 @@ namespace Proyecto.Migrations
                     b.Property<int>("DocenteItemId")
                         .HasColumnType("int");
 
+                    b.Property<string>("codTipoActividad")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("estado")
                         .HasColumnType("nvarchar(max)");
 

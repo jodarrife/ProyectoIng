@@ -8,7 +8,7 @@ export class FiltroDocentePipe implements PipeTransform {
   transform(docentes: Docente[], searchText: string) {
     if (searchText == null) return docentes;
     return docentes.filter(docente =>
-      docente.identificacion.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+      docente.identificacion.toString().indexOf(searchText.toLowerCase()) !== -1
         ||
         docente.primer_Nombre.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
         ||

@@ -3,119 +3,172 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <body>
-  <div class="contenido">
-    <header class="masthead bg-primary text-white text-center">
-      <div class="container d-flex align-items-center flex-column">
-        <!-- Masthead Heading -->
-        <h1 class="masthead-heading text-uppercase mb-0">ASIGNAR TIPO DE ACTIVIDAD</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="contenido">
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Heading -->
+          <h1 class="masthead-heading text-uppercase mb-0">ASIGNAR TIPO DE ACTIVIDAD</h1>
 
-        <!-- Icon Divider -->
-        <div class="divider-custom divider-light">
-          <div class="divider-custom-line"></div>
-          <div class="divider-custom-icon">
-            <i class="fa fa-star"></i>
+          <!-- Icon Divider -->
+          <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <i class="fa fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
           </div>
-          <div class="divider-custom-line"></div>
+        </div>
+      </header>
+      <br>
+      <!-- FORMATO-->
+
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+          <div class="form-row">
+            <div class="col">
+              <div class="control-group">
+                <div class="form-group">
+                  <label>Identificación:</label>
+                  <input formControlName="identificacion" class="form-control" type="number" (blur)="buscarCliente()"
+                    (dblclick)="openModalCliente()" [ngClass]="{ 'is-invalid': f.identificacion.errors }" />
+                  <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
+                    <div *ngIf="f.identificacion.errors.required">Identificación es
+                      requerida
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="control-group">
+                <label>Consulta:</label>
+                <br>
+                <button class="btn btn-primary" type="button" (click)="openModalCliente()">...</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="control-group">
+                <div class="form-group">
+                  <label>Primer Nombre:</label>
+                  <input readonly="readonly" formControlName="primer_Nombre" class="form-control"
+                    placeholder="PRIMER NOMBRE" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="control-group">
+                <div class="form-group">
+                  <label>Segundo Nombre:</label>
+                  <input class="form-control" readonly formControlName="segundo_Nombre" placeholder="SEGUNDO NOMBRE"
+                    type="text" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="control-group">
+                <div class="form-group">
+                  <label>Primer Apellido:</label>
+                  <input readonly="readonly" class="form-control" formControlName="primer_Apellido"
+                    placeholder="PRIMER APELLIDO" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="control-group">
+                <div class="control-group">
+                  <div class="form-group">
+                    <label>Teléfono:</label>
+                    <input readonly="readonly" class="form-control" formControlName="telefono" placeholder="TELEFONO"
+                      type="number" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" placeholder="EMAIL" formControlName="email" type="text"
+                  readonly="readonly" />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label>Tipo Docente:</label>
+                <input readonly="readonly" class="form-control" formControlName="tipo_Docente"
+                  placeholder="TIPO DOCENTE" type="number" />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="control-group">
+                <div class="form-group">
+                  <label>Tipo de Actividad:</label>
+                  <br>
+                  <select (change)="mostrarTipoA()" id="referencia" name="referencia" formControlName="tipo_Actividad">
+                    <option selected="selected">
+                      Seleccione...
+                    </option>
+                    <option *ngFor="let p of tipoActividad" [value]="p.cod_TipoActividad">{{p.nombre_Actividad}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group">
+                <label>Horas</label>
+                <input class="form-control" formControlName="hora" placeholder="DIGITE HORAS" type="number" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="text-align: right">
+            <button class="btn btn-primary">
+              Agregar
+            </button>
+          </div>
         </div>
       </div>
-    </header>
-    <br>
-    <!-- FORMATO-->
+      <!--
+        <div>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-striped mb-0" id="myTable">
+            <thead>
+              <tr>
+                <th>Identificación Docente</th>
+                <th>Tipo de actividad</th>
+                <th>Horas Asignadas</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
 
-    <body>
-      <br />
-      <main role="main" class="container">
-        <form method="">
-          <div class="row">
-            <div class="col-lg-1 "></div>
+            <tbody>
+              <tr *ngFor="let c of actividades">
+                <td>{{ c.docente.idDocente }}</td>
+                <td>{{ c.nombreActividad }}</td>
+                <td>{{ c.horasAsignadas }}</td>
+                <td>{{c.estado}}</td>
+                <td><button (click)="Eliminar(c.idActividad)" class="btn" style="color: white;">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-            <div class="col-lg-6 ">
-              <h1>Asignacion de actividades</h1>
-            </div>
-          </div>
-          <div class="row"></div>
-          <br />
-          <div class="row">
-            <div class="col-lg-3 ">
-              <div class="form-group">
-                <label for="Identificacion">Identificación</label>
+      -->
 
-                <input type="number" class="form-control form-control-lg " placeholder="identificacion"
-                  name="identificacion" id="identificacion" [(ngModel)]="docente.idDocente" />
-              </div>
-              <div class="form-group ">
-                <label for="nombres">Nombres</label>
-                <input type="text" readonly="readonly" class="form-control form-control-lg" placeholder="Nombres"
-                  name="nombres" id="nombres" [(ngModel)]="docente.nombres" />
-              </div>
-              <div class="form-group">
-                <label for="sexo">Tipo de actividad</label>
-                <select class="form-control" id="sexo" name="sexo" [(ngModel)]="actividad.nombreActividad">
-                  <option value="Tutorias">Tutorias</option>
-                  <option value="Investigación">Investigación</option>
-                  <option value="Extensión">Extensión</option>
-                  <option value="Material de apoyo">Material de apoyo</option>
-                  <option value="Trabajo de grado">Trabajo de grado</option>
-                  <option value="Cooperación institucional">Cooperación Institucional</option>
-                  <option value="Crecimiento personal">Crecimiento Personal</option>
-                  <option value="Encargo administrativo">Encargo Administrativo</option>
 
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-3" style=" padding-top: 25px;">
-              <div class="form-group">
-                <button (click)="getDocente()" class="btn btn-primary">
-                  Buscar
-                </button>
-              </div>
-              <div class="form-group">
-                <label for="Apellidos">Apellidos</label>
-                <input type="text" readonly="readonly" class="form-control form-control-lg" placeholder="Apellidos"
-                  name="Apellidos" id="Apellidos" [(ngModel)]="docente.apellidos" />
-              </div>
-              <div class="form-group">
-                <label for="Horas">Horas</label>
-                <input type="number" class="form-control form-control-lg" placeholder="Horas" name="Horas" id="Horas"
-                  [(ngModel)]="actividad.horasAsignadas" />
-              </div>
-              <div class="form-group" style="text-align: right">
-                <button (click)="addActividad()" class="btn btn-primary">
-                  Agregar
-                </button>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <table class="table table-bordered table-striped mb-0" id="myTable">
-                  <thead>
-                    <tr>
-                      <th>Identificación Docente</th>
-                      <th>Tipo de actividad</th>
-                      <th>Horas Asignadas</th>
-                      <th>Estado</th>
-                      <th>Eliminar</th>
-                    </tr>
-                  </thead>
+    </div>
+  </form>
 
-                  <tbody>
-                    <tr *ngFor="let c of actividades">
-                      <td>{{ c.docente.idDocente }}</td>
-                      <td>{{ c.nombreActividad }}</td>
-                      <td>{{ c.horasAsignadas }}</td>
-                      <td>{{c.estado}}</td>
-                      <td><button (click)="Eliminar(c.idActividad)" class="btn" style="color: white;">Eliminar</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </form>
-      </main>
-    </body>
-
-  </div>
 </body>
-<hr>

@@ -64,6 +64,8 @@ import { EnviarEmailComponent } from './Componentes/Complementos/enviar-email/en
 import { AyudaLoginComponent } from './Componentes/Modals/ayuda-login/ayuda-login.component';
 import { GaleriaComponent } from './Componentes/Complementos/galeria/galeria.component';
 import { ReporteComponent } from './Componentes/Complementos/reporte/reporte.component';
+import { ConsultaDocenteModalComponent } from './Componentes/Modals/consulta-docente-modal/consulta-docente-modal.component';
+import { AuxConsultaDocenteComponent } from './Componentes/Modals/aux-consulta-docente/aux-consulta-docente.component';
 
 
 
@@ -114,6 +116,8 @@ import { ReporteComponent } from './Componentes/Complementos/reporte/reporte.com
     AyudaLoginComponent,
     GaleriaComponent,
     ReporteComponent,
+    ConsultaDocenteModalComponent,
+    AuxConsultaDocenteComponent,
 
     
     
@@ -136,7 +140,8 @@ import { ReporteComponent } from './Componentes/Complementos/reporte/reporte.com
   bootstrap: [AppComponent],
   entryComponents: [
     AlertModalComponent,
-    AyudaLoginComponent
+    AyudaLoginComponent,
+    ConsultaDocenteModalComponent
 ]
 })
 export class AppModule { }

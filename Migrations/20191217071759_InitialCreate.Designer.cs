@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ClassContext))]
-    [Migration("20191216205001_InitialCreate")]
+    [Migration("20191217071759_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace Proyecto.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlanDeAccioncodPlanAccion")
+                    b.Property<int?>("PlanAccionesIdPlanAcciones")
                         .HasColumnType("int");
 
                     b.Property<string>("nombreAccion")
@@ -39,14 +39,14 @@ namespace Proyecto.Migrations
 
                     b.HasKey("codAccion");
 
-                    b.HasIndex("PlanDeAccioncodPlanAccion");
+                    b.HasIndex("PlanAccionesIdPlanAcciones");
 
                     b.ToTable("Acciones");
                 });
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.ActividadAsignada", b =>
                 {
-                    b.Property<int>("codigo")
+                    b.Property<int>("codigoActividad")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -63,7 +63,7 @@ namespace Proyecto.Migrations
                     b.Property<int>("horasAsignadas")
                         .HasColumnType("int");
 
-                    b.HasKey("codigo");
+                    b.HasKey("codigoActividad");
 
                     b.HasIndex("DocenteItemId");
 
@@ -231,30 +231,27 @@ namespace Proyecto.Migrations
                     b.ToTable("JefeDepartamentos");
                 });
 
-            modelBuilder.Entity("DocenteSharpHTTP.Models.PlanDeAccion", b =>
+            modelBuilder.Entity("DocenteSharpHTTP.Models.PlanAcciones", b =>
                 {
-                    b.Property<int>("codPlanAccion")
+                    b.Property<int>("IdPlanAcciones")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ActividadAsignadacodigo")
+                    b.Property<int?>("ActividadAsignadacodigoActividad")
                         .HasColumnType("int");
 
-                    b.Property<string>("descripcion")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ActividadId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("fecha_Inicio")
+                    b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("idActividadAsignada")
-                        .HasColumnType("int");
+                    b.HasKey("IdPlanAcciones");
 
-                    b.HasKey("codPlanAccion");
+                    b.HasIndex("ActividadAsignadacodigoActividad");
 
-                    b.HasIndex("ActividadAsignadacodigo");
-
-                    b.ToTable("PlanDeAccions");
+                    b.ToTable("Planes");
                 });
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.TipoActividad", b =>
@@ -276,9 +273,9 @@ namespace Proyecto.Migrations
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.AccionesItem", b =>
                 {
-                    b.HasOne("DocenteSharpHTTP.Models.PlanDeAccion", null)
-                        .WithMany("acciones")
-                        .HasForeignKey("PlanDeAccioncodPlanAccion");
+                    b.HasOne("DocenteSharpHTTP.Models.PlanAcciones", null)
+                        .WithMany("Acciones")
+                        .HasForeignKey("PlanAccionesIdPlanAcciones");
                 });
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.ActividadAsignada", b =>
@@ -290,11 +287,11 @@ namespace Proyecto.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DocenteSharpHTTP.Models.PlanDeAccion", b =>
+            modelBuilder.Entity("DocenteSharpHTTP.Models.PlanAcciones", b =>
                 {
                     b.HasOne("DocenteSharpHTTP.Models.ActividadAsignada", "ActividadAsignada")
                         .WithMany()
-                        .HasForeignKey("ActividadAsignadacodigo");
+                        .HasForeignKey("ActividadAsignadacodigoActividad");
                 });
 #pragma warning restore 612, 618
         }

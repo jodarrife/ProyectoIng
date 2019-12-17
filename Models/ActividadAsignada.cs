@@ -10,7 +10,7 @@ namespace DocenteSharpHTTP.Models
     public class ActividadAsignada
     {
         [Key]
-        public int codigo { get; set; }
+        public int codigoActividad { get; set; }
         public string codTipoActividad { get; set; }
        // public TipoActividad TipoActividad { get; set; }
         public int DocenteItemId { get; set; }

@@ -70,5 +70,9 @@ export class ActividadAsignadaService {
   private log(message: string) {
     alert(`SERVIDOR: ${message}`);
   }
+
+
+
+  
 }
 

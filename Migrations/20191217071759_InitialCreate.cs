@@ -106,7 +106,7 @@ namespace Proyecto.Migrations
                 name: "ActividadesAsignadas",
                 columns: table => new
                 {
-                    codigo = table.Column<int>(nullable: false)
+                    codigoActividad = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     codTipoActividad = table.Column<string>(nullable: true),
                     DocenteItemId = table.Column<int>(nullable: false),
@@ -115,7 +115,7 @@ namespace Proyecto.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActividadesAsignadas", x => x.codigo);
+                    table.PrimaryKey("PK_ActividadesAsignadas", x => x.codigoActividad);
                     table.ForeignKey(
                         name: "FK_ActividadesAsignadas_Docentes_DocenteItemId",
                         column: x => x.DocenteItemId,
@@ -125,24 +125,23 @@ namespace Proyecto.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlanDeAccions",
+                name: "Planes",
                 columns: table => new
                 {
-                    codPlanAccion = table.Column<int>(nullable: false)
+                    IdPlanAcciones = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    descripcion = table.Column<string>(nullable: true),
-                    fecha_Inicio = table.Column<DateTime>(nullable: false),
-                    idActividadAsignada = table.Column<int>(nullable: false),
-                    ActividadAsignadacodigo = table.Column<int>(nullable: true)
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    ActividadId = table.Column<int>(nullable: false),
+                    ActividadAsignadacodigoActividad = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlanDeAccions", x => x.codPlanAccion);
+                    table.PrimaryKey("PK_Planes", x => x.IdPlanAcciones);
                     table.ForeignKey(
-                        name: "FK_PlanDeAccions_ActividadesAsignadas_ActividadAsignadacodigo",
-                        column: x => x.ActividadAsignadacodigo,
+                        name: "FK_Planes_ActividadesAsignadas_ActividadAsignadacodigoActividad",
+                        column: x => x.ActividadAsignadacodigoActividad,
                         principalTable: "ActividadesAsignadas",
-                        principalColumn: "codigo",
+                        principalColumn: "codigoActividad",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -154,23 +153,23 @@ namespace Proyecto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombreAccion = table.Column<string>(nullable: true),
                     planAccionId = table.Column<int>(nullable: false),
-                    PlanDeAccioncodPlanAccion = table.Column<int>(nullable: true)
+                    PlanAccionesIdPlanAcciones = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Acciones", x => x.codAccion);
                     table.ForeignKey(
-                        name: "FK_Acciones_PlanDeAccions_PlanDeAccioncodPlanAccion",
-                        column: x => x.PlanDeAccioncodPlanAccion,
-                        principalTable: "PlanDeAccions",
-                        principalColumn: "codPlanAccion",
+                        name: "FK_Acciones_Planes_PlanAccionesIdPlanAcciones",
+                        column: x => x.PlanAccionesIdPlanAcciones,
+                        principalTable: "Planes",
+                        principalColumn: "IdPlanAcciones",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Acciones_PlanDeAccioncodPlanAccion",
+                name: "IX_Acciones_PlanAccionesIdPlanAcciones",
                 table: "Acciones",
-                column: "PlanDeAccioncodPlanAccion");
+                column: "PlanAccionesIdPlanAcciones");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadesAsignadas_DocenteItemId",
@@ -178,9 +177,9 @@ namespace Proyecto.Migrations
                 column: "DocenteItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlanDeAccions_ActividadAsignadacodigo",
-                table: "PlanDeAccions",
-                column: "ActividadAsignadacodigo");
+                name: "IX_Planes_ActividadAsignadacodigoActividad",
+                table: "Planes",
+                column: "ActividadAsignadacodigoActividad");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -201,7 +200,7 @@ namespace Proyecto.Migrations
                 name: "TipoActividades");
 
             migrationBuilder.DropTable(
-                name: "PlanDeAccions");
+                name: "Planes");
 
             migrationBuilder.DropTable(
                 name: "ActividadesAsignadas");

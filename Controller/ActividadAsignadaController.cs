@@ -59,7 +59,7 @@ namespace DocenteSharpHTTP.Controllers
         [HttpGet("{codigo}")]
         public async Task<ActionResult<ActividadAsignada>> GetActividadAsignadasItem(int id)
         {
-            var actividad = await _context.ActividadesAsignadas.Include(t => t.DocenteItem).FirstOrDefaultAsync(i => i.codigo == id);
+            var actividad = await _context.ActividadesAsignadas.Include(t => t.DocenteItem).FirstOrDefaultAsync(i => i.codigoActividad == id);
             if (actividad == null)
             {
                 return NotFound();
@@ -89,13 +89,13 @@ namespace DocenteSharpHTTP.Controllers
             }
             _context.ActividadesAsignadas.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetActividadAsignadasItem), new { id = item.codigo }, item);
+            return CreatedAtAction(nameof(GetActividadAsignadasItem), new { id = item.codigoActividad }, item);
         }
         // PUT: api/Acciones/5
         [HttpPut("{codigo}")]
         public async Task<IActionResult> PutActicidadesAsignadas(int id, ActividadAsignada item)
         {
-            if (id != item.codigo)
+            if (id != item.codigoActividad)
             {
                 return BadRequest();
             }

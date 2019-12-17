@@ -79,4 +79,16 @@ export class TipoActividadService {
   private log(message: string) {
     alert(`SERVIDOR: ${message}`);
   }
+
+
+
+  //adicionels
+  //adicionales
+  getActividadesDocente(identificacion:number): Observable<TipoActividad[]> {
+    const url = `${this.baseUrl + 'api/TipoActividad'}/Docente=${identificacion}`;
+    return this.http.get<TipoActividad[]>(url).pipe(
+      tap(_ => console.log('Se Consulta la información')),
+      catchError(this.handleError<TipoActividad[]>('getAll', []))
+    );
+  }
 }

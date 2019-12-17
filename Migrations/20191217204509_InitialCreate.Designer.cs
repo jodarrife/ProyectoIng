@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ClassContext))]
-    [Migration("20191217071759_InitialCreate")]
+    [Migration("20191217204509_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,14 +54,14 @@ namespace Proyecto.Migrations
                     b.Property<int>("DocenteItemId")
                         .HasColumnType("int");
 
-                    b.Property<string>("codTipoActividad")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("estado")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("horasAsignadas")
                         .HasColumnType("int");
+
+                    b.Property<string>("nombreActividad")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("codigoActividad");
 

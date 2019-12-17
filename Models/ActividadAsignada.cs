@@ -11,7 +11,7 @@ namespace DocenteSharpHTTP.Models
     {
         [Key]
         public int codigoActividad { get; set; }
-        public string codTipoActividad { get; set; }
+        public string nombreActividad { get; set; }
        // public TipoActividad TipoActividad { get; set; }
         public int DocenteItemId { get; set; }
         [ForeignKey("DocenteItemId")]

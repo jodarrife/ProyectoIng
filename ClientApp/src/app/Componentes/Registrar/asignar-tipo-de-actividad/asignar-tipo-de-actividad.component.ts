@@ -10,6 +10,9 @@ import { ConsultaDocenteModalComponent } from '../../Modals/consulta-docente-mod
 import { AlertModalComponent } from '../../Errores/@base/modals/alert-modal/alert-modal.component';
 import { JefeDepartamentoService } from '../../services/jefe-departamento.service';
 import { isUndefined } from "util";
+import { ParsedVariable } from '@angular/compiler';
+import { ActividadAsignada } from 'src/app/models/actividad-asignada';
+import { ActividadAsignadaService } from '../../services/actividad-asignada.service';
 
 @Component({
   selector: 'app-asignar-tipo-de-actividad',
@@ -19,6 +22,7 @@ import { isUndefined } from "util";
 export class AsignarTipoDeActividadComponent implements OnInit {
 
   tipoActividad: TipoActividad[];
+  actividadAsignada: ActividadAsignada;
   docente: Docente;
   registerForm: FormGroup;
   tipoAct: TipoActividad;
@@ -30,7 +34,8 @@ export class AsignarTipoDeActividadComponent implements OnInit {
     private tipoActividadService: TipoActividadService,
     private formBuilder: FormBuilder,
     private jefe: JefeDepartamentoService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private actividadAsignadaService: ActividadAsignadaService ) { }
 
 
   ngOnInit() {
@@ -43,10 +48,42 @@ export class AsignarTipoDeActividadComponent implements OnInit {
       telefono: [''],
       email: [''],
       tipo_Docente: [''],
-     
-      
-  });
+      tipo_Actividad: [''],
+      hora: ['']
+    });
+
+
+    //mapeo
+    this.docente = {
+      tipo_Documento: "",
+      identificacion: null,
+      primer_Nombre: "",
+      segundo_Nombre: "",
+      primer_Apellido: "",
+      segundo_Apellido: "",
+      fecha_Nacimiento: null,
+      genero: "",
+      email: "",
+      telefono: parseInt(""),
+      cargo: "",
+      estadoSys: "",
+      user_Name: "",
+      contrasena: "",
+      tipo_Docente: ""
+    };
+
+    this.haveDocente = false;
+    this.actividadAsignada = {
+      idActividad: 0,
+      nombreActividad: "",
+      docenteItemId: null,
+      docente: this.docente,
+      horasAsignadas: null,
+      estado: ""
+    };
   }
+
+
 
   //llenar el comboBox
   getTipoAc() {
@@ -59,53 +96,82 @@ export class AsignarTipoDeActividadComponent implements OnInit {
         .subscribe(tipoAc => {
           this.tipoAct = tipoAc
         });
+        alert(this.tipoAct)
     }
   }
 
+  
+
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  buscarCliente() {
+    this.docenteService.get2(this.registerForm.value.identificacion).subscribe(docente => {
+      if (docente != null) {
+        this.f['identificacion'].setValue(docente.identificacion);
+        this.f['primer_Nombre'].setValue(docente.primer_Nombre);
+        this.f['segundo_Nombre'].setValue(docente.segundo_Nombre);
+        this.f['primer_Apellido'].setValue(docente.primer_Apellido);
+        this.f['telefono'].setValue(docente.telefono);
+        this.f['email'].setValue(docente.email);
+        this.f['tipo_Docente'].setValue(docente.tipo_Docente);
+      }
+      else {
+        this.openModalCliente();
+      }
+    });
+  }
+  //Manejo Modal
+  openModalCliente() {
+    this.modalService.open(ConsultaDocenteModalComponent, { size: 'lg' }).result.then((docente) => this.actualizar(docente));
+  }
+
+  actualizar(docente: Docente) {
+
+    this.registerForm.controls['identificacion'].setValue(docente.identificacion);
+    this.registerForm.controls['primer_Nombre'].setValue(docente.primer_Nombre);
+    this.registerForm.controls['segundo_Nombre'].setValue(docente.segundo_Nombre);
+    this.registerForm.controls['primer_Apellido'].setValue(docente.primer_Apellido);
+    this.registerForm.controls['telefono'].setValue(docente.telefono);
+    this.registerForm.controls['email'].setValue(docente.email);
+    this.registerForm.controls['tipo_Docente'].setValue(docente.tipo_Docente);
+
+  }
+  //Fin Manejo Modal
+
+
+  //agregar 
+  addActividad() {
+    if (this.actividadAsignada.horasAsignadas != null && this.actividadAsignada.nombreActividad != null) {
+      if (this.haveDocente==false) {
+        this.actividadAsignada.nombreActividad= this.registerForm.value.tipo_Actividad;
+        this.actividadAsignada.docenteItemId= this.registerForm.value.identificacion;
+        //this.actividadAsignada.docente = this.docente;
+        this.actividadAsignada.horasAsignadas= this.registerForm.value.hora;
+        this.actividadAsignada.estado = "Asignada";
+        console.log(this.actividadAsignada);
+        this.actividadAsignadaService.addActividad(this.actividadAsignada)
+        .subscribe(
+        );
+        //.subscribe(rest => {          this.getActividadesDocente(this.docente.identificacion);
+
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.actividadAsignada, null, 4));
+      } else {
+        //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+        alert("Debe buscar un docente");
+      }
+    } else {
+     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+      alert("Rellene los campos");
+    }
+  }
   //actividad por docente
   getActividadesDocente(id: number) {
     this.tipoActividadService
       .getActividadesDocente(id)
       .subscribe(tipoActividad => (this.tipoActividad = tipoActividad));
   }
-  
 
- // convenience getter for easy access to form fields
- get f() { return this.registerForm.controls; }
   
- buscarCliente() {
-     this.docenteService.get2(this.registerForm.value.identificacion).subscribe(docente => {
-         if (docente != null) {
-             this.f['identificacion'].setValue(docente.identificacion);
-             this.f['primer_Nombre'].setValue(docente.primer_Nombre);
-             this.f['segundo_Nombre'].setValue(docente.segundo_Nombre);
-             this.f['primer_Apellido'].setValue(docente.primer_Apellido);
-             this.f['telefono'].setValue(docente.telefono);
-             this.f['email'].setValue(docente.email);
-             this.f['tipo_Docente'].setValue(docente.tipo_Docente);
-         }
-         else
-         {
-             this.openModalCliente();
-         }
-     });
- }
-  //Manejo Modal
-  openModalCliente()
-  {
-      this.modalService.open(ConsultaDocenteModalComponent, { size: 'lg' }).result.then((docente) => this.actualizar(docente));
-  }
-
-  actualizar(docente: Docente) {
-      
-      this.registerForm.controls['identificacion'].setValue(docente.identificacion);
-      this.registerForm.controls['primer_Nombre'].setValue(docente.primer_Nombre);
-      this.registerForm.controls['segundo_Nombre'].setValue(docente.segundo_Nombre);
-      this.registerForm.controls['primer_Apellido'].setValue(docente.primer_Apellido);
-      this.registerForm.controls['telefono'].setValue(docente.telefono);
-      this.registerForm.controls['email'].setValue(docente.email);
-      this.registerForm.controls['tipo_Docente'].setValue(docente.tipo_Docente);
-      
-  }
-  //Fin Manejo Modal
 }

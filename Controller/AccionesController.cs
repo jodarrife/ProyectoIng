@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DocenteSharpHTTP.Models;
-using System;
-
 namespace DocenteSharpHTTP.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using DocenteSharpHTTP.Models;
+    using System;
+
     [Route("api/[controller]")]
     [ApiController]
     public class AccionesController : ControllerBase
@@ -36,9 +36,9 @@ namespace DocenteSharpHTTP.Controllers
         
         // GET: api/Acciones/1
         [HttpGet("{cod_Accion}")]
-        public async Task<ActionResult<AccionesItem>> GetAcciones(int codAccion)
+        public async Task<ActionResult<AccionesItem>> GetAcciones(int id)
         {
-            var accionesItem = await _context.Acciones.FindAsync(codAccion);
+            var accionesItem = await _context.Acciones.FindAsync(id);
             if (accionesItem == null)
             {
                 return NotFound();
@@ -51,13 +51,13 @@ namespace DocenteSharpHTTP.Controllers
         {
             _context.Acciones.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetAcciones), new { codAccion = item.codAccion }, item);
+            return CreatedAtAction(nameof(GetAcciones), new { id = item.IdAccion }, item);
         }
         // PUT: api/Acciones/5
         [HttpPut("{cod_Accion}")]
         public async Task<IActionResult> PutAcciones(int codAccion, AccionesItem item)
         {
-            if (codAccion != item.codAccion)
+            if (codAccion != item.IdAccion)
             {
                 return BadRequest();
             }

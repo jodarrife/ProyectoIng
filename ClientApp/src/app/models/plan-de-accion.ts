@@ -1,9 +1,9 @@
+import { Acciones } from "./acciones";
+import { ActividadAsignada } from "./actividad-asignada";
+
 export class PlanAccion {
-    cod_PlanAccion: number;
-    tipo_PlanAccion: string;
-    descripcion: string;
-    fechaInicio: Date;
-    fechaFinal: Date;
-    id_Docente: number;
-    estado_PlanAccion: string;
+    idPlanAcciones:number;
+    acciones:Acciones[];
+    fecha:Date;
+    actividad:ActividadAsignada;
 }

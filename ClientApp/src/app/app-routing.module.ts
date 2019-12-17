@@ -32,13 +32,15 @@ import { ConsultaDocenteComponent } from "./Componentes/Consultas/consulta-docen
 import { ConsultaAccionesComponent } from './Componentes/Consultas/consulta-acciones/consulta-acciones.component';
 //Consultar Tipo de Actividad
 import { ConsultaTipoActividadComponent } from './Componentes/Consultas/consulta-tipo-actividad/consulta-tipo-actividad.component';
+//consulta actividades asignadas
+import { ConsultaPlanAccionComponent } from './Componentes/Consultas/consulta-plan-accion/consulta-plan-accion.component';
 
 //Modificar docente
 import { ModificarDocenteComponent } from './Componentes/Modificar/modificar-docente/modificar-docente.component';
 // Modificar Acciones
 import { ModificarAccionesComponent } from './Componentes/Modificar/modificar-acciones/modificar-acciones.component';
 //Modificar Tipo Actividad
-import { ModificarTipoActividadComponent} from './Componentes/Modificar/modificar-tipo-actividad/modificar-tipo-actividad.component';
+import { ModificarTipoActividadComponent } from './Componentes/Modificar/modificar-tipo-actividad/modificar-tipo-actividad.component';
 import { AuthguardGuard } from './Componentes/ComponetesLogin/Guard/authguard.guard';
 import { AuthDocenteGuard } from './Componentes/ComponetesLogin/Guard/auth-docente.guard';
 
@@ -99,7 +101,7 @@ const routes: Routes = [
   },
   //Registrar tipo de actividad
   {
-    path:'RegistrarTipodeActividad',
+    path: 'RegistrarTipodeActividad',
     component: RegistroTipoDeActividadComponent
   },
   //Consulta Docente
@@ -120,18 +122,22 @@ const routes: Routes = [
     //canActivate: [AuthguardGuard], 
     component: ConsultaTipoActividadComponent
   },
-
-
+  //Consulta plan de accion ConsultaPlanAccionComponent
+  {
+    path: 'ConsultaPlanAccion',
+    //canActivate: [AuthguardGuard], 
+    component: ConsultaPlanAccionComponent
+  },
   //Modificar Docente
   { path: 'ModificarDocente/:identificacion', component: ModificarDocenteComponent },
   //Modificar Acciones
   { path: 'ModificarAcciones/:cod_Accion', component: ModificarAccionesComponent },
   //Modificar Tipo Actividad
-  { path: 'ModificarTipoActividad/:cod_TipoActividad', component: ModificarTipoActividadComponent},
+  { path: 'ModificarTipoActividad/:cod_TipoActividad', component: ModificarTipoActividadComponent },
 
 
   //Evidencias
-  { path: 'Reportes', component: ReporteComponent},
+  { path: 'Reportes', component: ReporteComponent },
 
 
 

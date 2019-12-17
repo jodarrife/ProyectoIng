@@ -71,7 +71,7 @@
                                         <div class="form-group">
                                             <label>Identificación:</label>
                                             <input formControlName="identificacion" class="form-control"
-                                                placeholder="DIGITE IDENTIFICACIÓN" type="text"
+                                                placeholder="DIGITE IDENTIFICACIÓN" type="number"
                                                 [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors }" />
                                             <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
                                                 <div *ngIf="f.identificacion.errors.required">Identificación es
@@ -217,6 +217,7 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.tipo_Docente.errors }">
                                             <option value="CATEDRATICO">CATEDRATICO</option>
                                             <option value="PLANTA">PLANTA</option>
+                                            <option value="OCASIONAL">OCASIONAL</option>
                                         </select>
                                         <div *ngIf="submitted && f.tipo_Docente.errors" class="invalid-feedback">
                                             <div *ngIf="f.tipo_Docente.errors.required">Tipo de docente requerido</div>
@@ -227,6 +228,9 @@
 
                             </div>
                             <hr>
+                            <!--
+                                
+                            -->
                             <H1>USUARIO LOGUEO</H1>
                             <div class="form-row">
                                 <div class="col">

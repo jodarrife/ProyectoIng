@@ -149,27 +149,26 @@ namespace Proyecto.Migrations
                 name: "Acciones",
                 columns: table => new
                 {
-                    codAccion = table.Column<int>(nullable: false)
+                    IdAccion = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombreAccion = table.Column<string>(nullable: true),
-                    planAccionId = table.Column<int>(nullable: false),
-                    PlanAccionesIdPlanAcciones = table.Column<int>(nullable: true)
+                    PlanAccionesId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Acciones", x => x.codAccion);
+                    table.PrimaryKey("PK_Acciones", x => x.IdAccion);
                     table.ForeignKey(
-                        name: "FK_Acciones_Planes_PlanAccionesIdPlanAcciones",
-                        column: x => x.PlanAccionesIdPlanAcciones,
+                        name: "FK_Acciones_Planes_PlanAccionesId",
+                        column: x => x.PlanAccionesId,
                         principalTable: "Planes",
                         principalColumn: "IdPlanAcciones",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Acciones_PlanAccionesIdPlanAcciones",
+                name: "IX_Acciones_PlanAccionesId",
                 table: "Acciones",
-                column: "PlanAccionesIdPlanAcciones");
+                column: "PlanAccionesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadesAsignadas_DocenteItemId",

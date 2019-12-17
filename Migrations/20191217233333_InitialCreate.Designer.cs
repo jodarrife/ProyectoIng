@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ClassContext))]
-    [Migration("20191217204509_InitialCreate")]
+    [Migration("20191217233333_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,23 +23,20 @@ namespace Proyecto.Migrations
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.AccionesItem", b =>
                 {
-                    b.Property<int>("codAccion")
+                    b.Property<int>("IdAccion")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlanAccionesIdPlanAcciones")
+                    b.Property<int>("PlanAccionesId")
                         .HasColumnType("int");
 
                     b.Property<string>("nombreAccion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("planAccionId")
-                        .HasColumnType("int");
+                    b.HasKey("IdAccion");
 
-                    b.HasKey("codAccion");
-
-                    b.HasIndex("PlanAccionesIdPlanAcciones");
+                    b.HasIndex("PlanAccionesId");
 
                     b.ToTable("Acciones");
                 });
@@ -275,7 +272,9 @@ namespace Proyecto.Migrations
                 {
                     b.HasOne("DocenteSharpHTTP.Models.PlanAcciones", null)
                         .WithMany("Acciones")
-                        .HasForeignKey("PlanAccionesIdPlanAcciones");
+                        .HasForeignKey("PlanAccionesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.ActividadAsignada", b =>

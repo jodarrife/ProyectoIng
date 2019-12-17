@@ -23,145 +23,57 @@
     <hr>
     <!-- FORMATO-->
     <hr>
-    <p>SELECCIONE DOCENTE</p>
-    <!-- DataTables Example -->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-table"></i>
-            Tabla de Docentes</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                    *ngIf='docentes && docentes.length'>
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th>Acciones</th>
-                            <th>Tipo Documento</th>
-                            <th>Identificación</th>
-                            <th>Primer Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Email</th>
-                            <th>Telefono</th>
-                            <th>Estado</th>
-                            <th>Tipo Docente</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let docente of docentes | filtroDocente:searchText; index as i">
-                            <!--
-                                <td>
-                                <a routerLink="/ModificarDocente/{{docente.identificacion}}"><span
-                                        class="table-remove"><button type="button"
-                                            class="btn btn-success btn-rounded btn-sm my-0">Editar</button></span></a>
-                            </td>
-                            -->
-                            <th scope="row">{{ i + 1 }}</th>
-                            <td>
-                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
-                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
-                                    <label class="s18 text-normal"></label>
-                                </div>
-                            </td>
-                            <td>{{docente.tipo_Documento}}</td>
-                            <td>{{docente.identificacion}}</td>
-                            <td>{{docente.primer_Nombre}}</td>
-
-                            <td>{{docente.primer_Apellido}}</td>
-
-                            <td>{{docente.email}}</td>
-                            <td>{{docente.telefono}}</td>
-
-                            <td>{{docente.estadoSys}}</td>
-                            <td>{{docente.tipo_Docente}}</td>
-
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Nueva Accion</h2>
+                <div class="form-group ">
+                    <label for="Actividad">Seleccione la Actividaddad</label>
+                    <select class="form-control" (change)="getActividad()" id="actividades" name="actividades">
+                        <option selected="selected">
+                            Seleccione...
+                        </option>
+                        <option *ngFor="let ac of actividades" [value]="ac.idActividad">{{
+                  ac.nombreActividad
+                }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Descripcion">Descripcion</label>
+                    <textarea class="form-control rounded-0" name="descripcion" id="textarea" cols="30" rows="10"
+                        [(ngModel)]="accion.accionPlaneada"></textarea>
+                </div>
+                <div class="form-group" style="text-align: right;">
+                    <button class="btn btn-primary" (click)="addAccion()">Agregar</button>
+                </div>
             </div>
-        </div>
-        <div class="card-footer small text-muted">
-            Modificación Continua
-        </div>
-    </div>
-    <hr>
 
-    <hr>
-    <p>SELECCIONE TIPO DE ACTIVIDAD</p>
-    <!-- DataTables Example -->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-table"></i>
-            Tabla de Tipo Actividad</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+            <div class="col-lg-6">
+                <h2>Plan de Acciones</h2>
+                <br />
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-bordered table-striped mb-0">
                         <tr>
-                            <th>Ver</th>
-                            <th>Código Tipo Actividad</th>
-                            <th>Nombre Tipo Actividad</th>
-
+                            <th class="masAncho">Accion</th>
+                            <th class="normal">Eliminar</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of tipoActividad">
-                            <td>
-                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
-                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
-                                    <label class="s18 text-normal"></label>
-                                </div>
+                        <tr *ngFor="let action of acciones">
+                            <td class="masAncho">{{ action.accionPlaneada }}</td>
+                            <td class="normal">
+                                <button class="btn" style="color: white;" (click)="eliminarAccion(action)">
+                                    Eliminar
+                                </button>
                             </td>
-                            <td>{{item.cod_TipoActividad}}</td>
-                            <td>{{item.nombre_Actividad}}</td>
                         </tr>
-                    </tbody>
-                </table>
+                    </table>
+                </div>
+                <br />
+                <div class="form-group" style="text-align: right;">
+                    <button class="btn btn-primary" (click)="validarAddPlan()">
+                        Registrar Plan
+                    </button>
+                </div>
             </div>
-        </div>
-
-        <div class="card-footer small text-muted">
-            Modificación Continua
-        </div>
-    </div>
-    <hr>
-    <div>
-        <h1 class="h2">LISTA DE ACCIONES</h1>
-    </div>
-    <!-- DataTables Example -->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fas fa-table"></i>
-            Tabla de Acciones</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Ver</th>
-                            <th>Código Acción</th>
-                            <th>Nombre Acción</th>
-                            <th>Tipo de Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let acciones of acciones">
-                            <td>
-                                <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
-                                    <input type="radio" class="tableid" name="tableid" id="tableid" class="click">
-                                    <label class="s18 text-normal"></label>
-                                </div>
-                            </td>
-                            <td>{{acciones.cod_Accion}}</td>
-                            <td>{{acciones.nombre_Accion}}</td>
-                            <td>{{acciones.tipo_Accion}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="card-footer small text-muted">
-            Modificación Continua
         </div>
     </div>
 

@@ -19,8 +19,7 @@ export class ActividadAsignadaService {
 
   addActividad(actividad: ActividadAsignada): Observable<ActividadAsignada> {
     return this.http.post<ActividadAsignada>(this.baseUrl + 'api/ActividadAsignada', actividad, httpOptions).pipe(
-      tap((newActividad: ActividadAsignada) => this.log(`Nueva actividad agregada w/ id=${newActividad.idActividad}`)),
-      catchError(this.handleError<ActividadAsignada>('addActividad'))
+      tap()
     );
   }
 

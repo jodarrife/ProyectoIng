@@ -42,10 +42,11 @@ export class RegistroDocenteComponent implements OnInit {
 
   add() {
     this.docente = this.registerForm.value;
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+ 
     this.docenteService.addDocente(this.docente)
       .subscribe(
       );
+      alert("DOCENTE AGREGADO")
   }
 
   get f() { return this.registerForm.controls; }

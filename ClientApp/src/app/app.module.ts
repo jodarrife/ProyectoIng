@@ -66,6 +66,8 @@ import { GaleriaComponent } from './Componentes/Complementos/galeria/galeria.com
 import { ReporteComponent } from './Componentes/Complementos/reporte/reporte.component';
 import { ConsultaDocenteModalComponent } from './Componentes/Modals/consulta-docente-modal/consulta-docente-modal.component';
 import { AuxConsultaDocenteComponent } from './Componentes/Modals/aux-consulta-docente/aux-consulta-docente.component';
+import { ConsultaTipoActividadAsignadaComponent } from './Componentes/Consultas/consulta-tipo-actividad-asignada/consulta-tipo-actividad-asignada.component';
+import { FiltroActAsignadaPipe } from './Componentes/Pipes/filtro-act-asignada.pipe';
 
 
 
@@ -118,6 +120,8 @@ import { AuxConsultaDocenteComponent } from './Componentes/Modals/aux-consulta-d
     ReporteComponent,
     ConsultaDocenteModalComponent,
     AuxConsultaDocenteComponent,
+    ConsultaTipoActividadAsignadaComponent,
+    FiltroActAsignadaPipe,
 
     
     

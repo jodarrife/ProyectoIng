@@ -1,1 +1,18 @@
-<p>consulta-plan-accion works!</p>
+<div class="container">
+    <h2>Consulta Plan de Acciones</h2>
+    <table class="table">
+        <tr>
+            <th>Actividad</th>
+            <th>horas</th>
+            <th>Estado</th>
+            <th></th>
+
+        </tr>
+        <tr *ngFor="let p of planes">
+            <td>{{p.actividadAsignada.nombreActividad}}</td>
+            <td>{{p.actividadAsignada.horasAsignadas}}</td>
+            <td>{{p.actividadAsignada.estado}}</td>
+            <td *ngIf="p.ActividadAsignada.estado==='Planeada'"><a routerLink="/accionesList/{{p.idPlanAcciones}}">Registrar descripciones</a></td>
+        </tr>
+    </table>
+</div>

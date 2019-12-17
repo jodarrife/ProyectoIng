@@ -30,47 +30,62 @@ export class AccionesService {
 
 
   /** POST: add a new Acciones to the server */
-  addAcciones(acciones: Acciones): Observable<Acciones> {
-    return this.http.post<Acciones>(this.baseUrl + 'api/Acciones', acciones, httpOptions).pipe(
-      tap((newAcciones: Acciones) => this.handleErrorService.log(`added NewAcciones w/ Codigo=${newAcciones.cod_Accion}`)),
-      catchError(this.handleErrorService.handleError<Acciones>('addAcciones'))
-    );
+  addAcciones(accion: Acciones) {
+    let acciones: Acciones[] = [];
+    if (sessionStorage.getItem("acciones") != null) {
+      acciones = JSON.parse(sessionStorage.getItem("acciones"));
+    }
+    acciones.push(accion);
+    sessionStorage.setItem("Acciones", JSON.stringify(acciones));
+    alert("Accion Agregada");
   }
-
-  /** GET Acciones from the server */
-  getAll(): Observable<Acciones[]> {
-    return this.http.get<Acciones[]>(this.baseUrl + 'api/Acciones').pipe(
-      tap(),
-      catchError(this.handleErrorService.handleError<Acciones[]>('Consulta aciiones', []))
-    );
+  getAcciones(): Acciones[] {
+    if (sessionStorage.getItem("acciones") != null) {
+      return JSON.parse(sessionStorage.getItem("acciones"));
+    } else {
+      return [];
+    }
   }
-
-  /** GET Acciones by cod_Accion. Will 404 if id not found */
-  get(cod_Accion: number): Observable<Acciones> {
-    const url = `${this.baseUrl + 'api/Acciones'}/${cod_Accion}`;
+  getAccion(id: number): Observable<Acciones> {
+    const url = `${this.baseUrl + 'api/accion'}/${id}`;
     return this.http.get<Acciones>(url).pipe(
-      tap(_ => this.handleErrorService.log(`fetched Acciones cod_Accion=${cod_Accion}`)),
-      catchError(this.handleErrorService.handleError<Acciones>(`getAcciones cod_Accion=${cod_Accion}`))
+      tap(_ => console.log(`Accion consultada id=${id}`)),
+      catchError(this.handleError<Acciones>(`getAccion id=${id}`))
     );
   }
-
-  /** PUT: update the Acciones on the server */
-  update(acciones: Acciones): Observable<any> {
-    const url = `${this.baseUrl + 'api/Acciones'}/${acciones.cod_Accion}`;
-    return this.http.put(url, acciones, httpOptions).pipe(
-      tap(_ => this.handleErrorService.log(`updated acciones cod_Accion=${acciones.cod_Accion}`)),
-      catchError(this.handleErrorService.handleError<any>('updateDocentes'))
+  update(accion: Acciones): Observable<any> {
+    const url = `${this.baseUrl + 'api/accion'}/${accion.idAccion}`;
+    return this.http.put(url, accion, httpOptions).pipe(
+      tap(_ => this.log(`Accion Guardada`)),
+      catchError(this.handleError<any>('AccionUpdate'))
     );
   }
+  deleteAccion(accion: Acciones) {
+    let acciones: Acciones[] = JSON.parse(sessionStorage.getItem("acciones"));
+    var i, j;
+    i = 0;
 
-  /** DELETE: delete the Acciones from the server */
-  delete(acciones: Acciones | number): Observable<Acciones> {
-    const id = typeof acciones === 'number' ? acciones : acciones.cod_Accion;
-    const url = `${this.baseUrl + 'api/Acciones'}/${id}`;
-    return this.http.delete<Acciones>(url, httpOptions).pipe(
-      tap(_ => this.handleErrorService.log(`deleted acciones cod_Accion=${id}`)),
-      catchError(this.handleErrorService.handleError<Acciones>('deleteAcciones'))
-    );
+    acciones.forEach(element => {
+      if (JSON.stringify(element) == JSON.stringify(accion)) {
+        +acciones.splice(i, 1);
+      } else {
+        i++;
+      }
+    });
+    sessionStorage.setItem("acciones", JSON.stringify(acciones));
+  }
+  eliminarAcciones() {
+    sessionStorage.removeItem('acciones');
+  }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+  private log(message: string) {
+    alert(`SERVIDOR: ${message}`);
   }
 
 }

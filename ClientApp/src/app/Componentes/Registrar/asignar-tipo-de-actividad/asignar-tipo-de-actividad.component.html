@@ -151,37 +151,12 @@
           </div>
         </div>
       </div>
-      <!--
-        <div>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-          <table class="table table-bordered table-striped mb-0" id="myTable">
-            <thead>
-              <tr>
-                <th>Identificación Docente</th>
-                <th>Tipo de actividad</th>
-                <th>Horas Asignadas</th>
-                <th>Estado</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <tr *ngFor="let c of actividades">
-                <td>{{ c.docente.idDocente }}</td>
-                <td>{{ c.nombreActividad }}</td>
-                <td>{{ c.horasAsignadas }}</td>
-                <td>{{c.estado}}</td>
-                <td><button (click)="Eliminar(c.idActividad)" class="btn" style="color: white;">Eliminar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <hr>
+
+      <div>
+        <app-consulta-tipo-actividad-asignada></app-consulta-tipo-actividad-asignada>
       </div>
-
-      -->
-
-
     </div>
   </form>
 

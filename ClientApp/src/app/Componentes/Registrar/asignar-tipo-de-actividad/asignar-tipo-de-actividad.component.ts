@@ -154,9 +154,10 @@ export class AsignarTipoDeActividadComponent implements OnInit {
         this.actividadAsignadaService.addActividad(this.actividadAsignada)
         .subscribe(
         );
+        
         //.subscribe(rest => {          this.getActividadesDocente(this.docente.identificacion);
 
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.actividadAsignada, null, 4));
+        alert("SE ASIGNO UN TIPO DE ACTIVIDAD");
       } else {
         //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
         alert("Debe buscar un docente");

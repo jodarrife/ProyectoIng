@@ -8,15 +8,15 @@
     aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span
       class="navbar-toggler-icon"></span> </button>
   <div style="float: right;" class="collapse navbar-collapse" id=" navbarsExample02">
-    <ul  style="float: right;" class="nav__links">
-      <li  ><a href="" routerLink="/HomePage" class="botonesDerecha">Home</a></li>
-      <li style="float: right;" ><a href="" class="botonesDerecha" (click)="logout()">Logout</a></li>
+    <ul style="float: right;" class="nav__links">
+      <li><a href="" routerLink="/HomePage" class="botonesDerecha">Home</a></li>
+      <li style="float: right;"><a href="" class="botonesDerecha" (click)="logout()">Logout</a></li>
       <div id="header">
         <ul class="nav">
           <li><a href="">Ayuda En Linea</a>
             <ul>
               <li><a href="" routerLink="/EnviarEmail">Enviar Correo</a></li>
-              <li><a (click)="open(task)" >Ayuda En Linea</a></li>
+              <li><a (click)="open(task)">Ayuda En Linea</a></li>
             </ul>
           </li>
         </ul>
@@ -54,22 +54,25 @@
                   Actividad</a></li>
             </ul>
           </li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i class="icono izquierda fa fa-envelope"></i>Verificar
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i
+                class="icono izquierda fa fa-envelope"></i>Verificar
               Actividades</a></li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i class="icono izquierda fa fa-envelope"></i>Estado de
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr"><i
+                class="icono izquierda fa fa-envelope"></i>Estado de
               Actividades</a></li>
           <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/nofr" routerLinkActive="active">Revisar
               Act. Complementarias</a>
           </li>
-          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/Reportes"><i class="icono izquierda fa fa-envelope"></i>Reporte
+          <li *ngIf="isAuthenticatedJefe()"><a href="#" routerLink="/Reportes"><i
+                class="icono izquierda fa fa-envelope"></i>Reporte
               Estadisticas</a></li>
 
           <!-- DOCENTE-->
           <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Plan de
               Acicón<i class="icono derecha fa fa-chevron-down"></i></a>
             <ul>
-              <li><a href="#" routerLink="/RegistroPlanDeAccion" routerLinkActive="active">Registrar
-                  Plan de Acicón</a></li>
+              <li><a href="#" routerLink="/ConsultaPlanAccion" routerLinkActive="active">Consultar Actividades
+                  Asignadas</a></li>
             </ul>
           </li>
           <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Act.
@@ -81,7 +84,8 @@
                   Act. Complementarias</a></li>
             </ul>
           </li>
-          <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Acciones<i
+          <!--
+ <li *ngIf="isAuthenticatedDoc()"><a href="#"><i class="icono izquierda fa fa-star"></i>Gestionar Acciones<i
                 class="icono derecha fa fa-chevron-down"></i></a>
             <ul>
               <li><a href="#" routerLink="/RegistroAcciones" routerLinkActive="active">Registrar
@@ -101,6 +105,8 @@
                   Evidencias</a></li>
             </ul>
           </li>
+          -->
+
 
         </ul>
       </div>

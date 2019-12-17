@@ -20,7 +20,9 @@ export class AuxConsultaDocenteComponent implements OnInit {
   }
 
   getAll() {
-    this.docenteService.getAll().subscribe(docentes => {this.docentes = docentes; this.searchText});
+    this.docenteService.getAll().subscribe(result => {
+      this.docentes = result;
+       this.searchText = '';});
   }
 
   seleccionar(docente: Docente) {

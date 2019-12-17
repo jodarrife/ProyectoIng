@@ -31,20 +31,20 @@ body
   bottom: -20px;
   border:  2px solid #09B76B;
   border-radius:  50%;
-  animation: animate 2s linear infinite;
+  animation: animate 1s linear infinite;
 }
 .pulse::after
 {
-  animation-delay: 1s;
+  animation-delay: 0.5s;
 }
 @keyframes animate
 {
   0%
   {
-      transform: scale(1.5);
+      transform: scale(1);
   }
   100%
   {
-      transform: scale(0.5);
+      transform: scale(0.25);
   }
 }

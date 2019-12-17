@@ -68,41 +68,13 @@ export class AsignarTipoDeActividadComponent implements OnInit {
       .getActividadesDocente(id)
       .subscribe(tipoActividad => (this.tipoActividad = tipoActividad));
   }
-  /*buscar el docente
-  getDocente() {
-    if (this.docente.identificacion != null) {
-      var id = Number.parseInt(
-        (document.getElementById("identificacion") as HTMLInputElement).value
-      );
-      this.docenteService.get(id).subscribe(docente => {
-        this.docente = docente;
-        if (isUndefined(this.docente)) {
-          this.docente = {
-            nombres: "",
-            apellidos: "",
-            idDocente: null,
-            sexo: "",
-            email: "",
-            telefono: ,
-            password:"",
-            usuario:""
-          };
-          this.tipoActividad=null;
-          this.haveDocente = false;
-        } else {
-          this.getActividadesDocente(this.docente.idDocente);
-          this.haveDocente = true;
-        }
-      });
-    }
-  }*/
-
+  
 
  // convenience getter for easy access to form fields
  get f() { return this.registerForm.controls; }
   
  buscarCliente() {
-     this.docenteService.get(this.registerForm.value.identificacion).subscribe(docente => {
+     this.docenteService.get2(this.registerForm.value.identificacion).subscribe(docente => {
          if (docente != null) {
              this.f['identificacion'].setValue(docente.identificacion);
              this.f['primer_Nombre'].setValue(docente.primer_Nombre);

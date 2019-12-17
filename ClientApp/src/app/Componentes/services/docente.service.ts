@@ -58,7 +58,14 @@ export class DocenteService {
         catchError(this.handleErrorService.handleError<Docente>('Consulta de Docente', null))
       );
   }
-
+  /** GET Docente by Identificacion. Will 404 if id not found */
+  get2(identificacion: number): Observable<Docente> {
+    return this.http.get<Docente>(this.baseUrl + 'api/Docente/' + identificacion)
+    .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<Docente>('Consulta de ClieDocentente', null))
+    );
+  }
   /** PUT: update the docentes on the server */
   update(docentes: Docente): Observable<any> {
     const url = `${this.baseUrl + 'api/Docente'}/${docentes.identificacion}`;

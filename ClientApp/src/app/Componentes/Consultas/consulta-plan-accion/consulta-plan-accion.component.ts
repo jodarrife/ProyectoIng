@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadAsignada } from 'src/app/models/actividad-asignada';
 import { Docente } from 'src/app/models/docente';
-import { PlanAccion } from 'src/app/models/plan-de-accion';
+import { PlanAcciones } from 'src/app/models/plan-acciones';
+
 import { ActividadAsignadaService } from '../../services/actividad-asignada.service';
 import { DocenteService } from '../../services/docente.service';
-import { PlanDeAccionService } from '../../services/plan-de-accion.service';
+
+import { PlanAccionesService } from '../../services/plan-acciones.service';
+
 
 @Component({
   selector: 'app-consulta-plan-accion',
@@ -16,12 +19,12 @@ export class ConsultaPlanAccionComponent implements OnInit {
   docente: Docente;
 
   actividadesAsignadas: ActividadAsignada[];
-  planes: PlanAccion[];
+  planes: PlanAcciones[];
 
   constructor(
     private actAsignadasService: ActividadAsignadaService,
     private docentyeService: DocenteService,
-    private planService: PlanDeAccionService
+    private planService: PlanAccionesService
   ) { }
 
   ngOnInit() {

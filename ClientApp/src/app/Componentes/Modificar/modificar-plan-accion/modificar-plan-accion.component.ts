@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanAccion } from 'src/app/models/plan-de-accion';
+import { PlanAcciones } from 'src/app/models/plan-acciones';
+
 import { ActividadAsignada } from 'src/app/models/actividad-asignada';
 import { Docente } from 'src/app/models/docente';
-import { PlanDeAccionService } from '../../services/plan-de-accion.service';
+
+import { PlanAccionesService } from '../../services/plan-acciones.service';
 import { ActivatedRoute } from '@angular/router';
 import { ActividadAsignadaService } from '../../services/actividad-asignada.service';
 import { DocenteService } from '../../services/docente.service';
@@ -17,12 +19,12 @@ import { Location } from "@angular/common";
 })
 export class ModificarPlanAccionComponent implements OnInit {
 
-  plan:PlanAccion;
+  plan:PlanAcciones;
   actividad:ActividadAsignada;
   docente:Docente;
   
     constructor(
-      private planService:PlanDeAccionService,
+      private planService:PlanAccionesService,
       private route: ActivatedRoute,
       private location:Location,
       private actividadService:ActividadAsignadaService,
@@ -32,12 +34,12 @@ export class ModificarPlanAccionComponent implements OnInit {
   
     ngOnInit() {
   
-      this.plan={acciones:[],actividad:null,fecha:null,idPlanAcciones:0}
+      this.plan={accioness:[],actividad:null,fecha:null,idPlanAcciones:0}
       this.getPlan();
     }
     getPlan(): void {
       const id = +this.route.snapshot.paramMap.get("idActividad");
-      this.planService.getPlanPorActividad(id).subscribe(plan => {
+      this.planService.getPlanByActividad(id).subscribe(plan => {
         (this.plan = plan);
         this.docente=this.docenteService.getDocenteLS();
         if(this.docente.identificacion!=this.plan.actividad.docente.identificacion){

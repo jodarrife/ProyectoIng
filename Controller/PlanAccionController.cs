@@ -78,12 +78,13 @@ namespace DocenteSharpHTTP.Controllers
         [HttpPost]
         public async Task<ActionResult<PlanAcciones>> PostPlan(PlanAcciones plan)
         {
-        plan.ActividadId=plan.ActividadAsignada.idActividad;
-        plan.ActividadAsignada=null;
-           
+            if(plan.ActividadAsignada!=null){
+                plan.ActividadId=plan.ActividadAsignada.idActividad;
+                plan.ActividadAsignada=null;
+
+            }
             _context.Planes.Add(plan);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction(nameof(GetPlan), new { id = plan.IdPlanAcciones }, plan);
 
         }

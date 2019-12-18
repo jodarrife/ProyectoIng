@@ -113,7 +113,7 @@
                 <div class="form-group">
                   <label>Tipo de Actividad:</label>
                   <br>
-                  <select  id="referencia" name="referencia" formControlName="tipo_Actividad"
+                  <select id="referencia" name="referencia" formControlName="tipo_Actividad"
                     [(ngModel)]="actividadAsignada.nombreActividad">
                     <option value="TUTORÍAS">TUTORÍAS</option>
                     <option value="INVESTIGACIÓN">INVESTIGACIÓN</option>
@@ -131,7 +131,7 @@
                     <option *ngFor="let p of tipoActividad" [value]="p.cod_TipoActividad">{{p.nombre_Actividad}}
                     </option>
                     -->
-                    
+
                   </select>
                 </div>
               </div>
@@ -155,7 +155,51 @@
       <hr>
 
       <div>
-        <app-consulta-tipo-actividad-asignada></app-consulta-tipo-actividad-asignada>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <div>
+          <h1 class="h2">LISTA DE ACTIVIDADES ASIGNADAS</h1>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="CONSULTAS">
+          </div>
+        </div>
+        <hr>
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fa fa-table"></i>
+            Tabla de actividades asignadas</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                *ngIf='actAsig && actAsig.length'>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th>Docente</th>
+                    <th>Nombre Actividad</th>
+                    <th>Horas Asignadas</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let actAsig of actAsig | filtroActAsignada:searchText; index as i">
+
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{actAsig.docenteItemId}}</td>
+                    <td>{{actAsig.nombreActividad}}</td>
+                    <td>{{actAsig.horasAsignadas}}</td>
+                    <td>{{actAsig.estado}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">
+            Modificación Continua
+          </div>
+        </div>
       </div>
     </div>
   </form>

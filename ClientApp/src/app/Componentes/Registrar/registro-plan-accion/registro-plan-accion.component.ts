@@ -6,9 +6,9 @@ import { DocenteService } from '../../services/docente.service';
 import { AccionesService } from '../../services/acciones.service';
 import { Acciones } from 'src/app/models/acciones';
 import { ActividadAsignada } from 'src/app/models/actividad-asignada';
-import { PlanAccion } from 'src/app/models/plan-de-accion';
+import { PlanAcciones } from 'src/app/models/plan-acciones';
 import { ActividadAsignadaService } from '../../services/actividad-asignada.service';
-import { PlanDeAccionService } from '../../services/plan-de-accion.service';
+import { PlanAccionesService } from '../../services/plan-acciones.service';
 import { isUndefined } from "util";
 import { Location } from "@angular/common";
 
@@ -19,69 +19,63 @@ import { Location } from "@angular/common";
   styleUrls: ['./registro-plan-accion.component.css']
 })
 export class RegistroPlanAccionComponent implements OnInit {
-
-
-  acciones: Acciones[];
-  actividadAsignadas: ActividadAsignada[];
-  actividadAsignada: ActividadAsignada;
+  actividades: ActividadAsignada[];
+  actividad: ActividadAsignada;
   docente: Docente;
   accion: Acciones;
-  plan: PlanAccion;
+  accioness: Acciones[];
+  plan: PlanAcciones;
   yaExiste: boolean;
-
-
   constructor(
-    private ActividadAsignadaService: ActividadAsignadaService,
+    private actividadService: ActividadAsignadaService,
     private docenteService: DocenteService,
-    private accionesService: AccionesService,
-    private planService: PlanDeAccionService,
+    private accionService: AccionesService,
+    private planService: PlanAccionesService,
     private location: Location
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.accion = { idAccion: null, nombreAccion: "" };
     this.getDocente();
     this.getActividades();
   }
-  //llenar el combobox
   getDocente() {
     this.docente = this.docenteService.getDocenteLS();
   }
-
   getActividades() {
-    this.ActividadAsignadaService
+    this.actividadService
       .getActividadesDocente(this.docente.identificacion)
-      .subscribe(actividadAsignadas => {
-        this.actividadAsignadas = actividadAsignadas;
-        console.log(this.actividadAsignadas);
-        if (this.actividadAsignadas.length <= 0) {
+      .subscribe(actividades => {
+        this.actividades = actividades;
+        console.log(this.actividades);
+        if (this.actividades.length <= 0) {
           alert("El docente no tiene actividades asignadas");
         }
       });
   }
   getActividad() {
-    var id = (
+    var id = Number.parseInt(
       (document.getElementById("actividades") as HTMLInputElement).value
     );
-      this.ActividadAsignadaService.get(parseInt(id)).subscribe(actividadAsignada => {
-        this.actividadAsignada = actividadAsignada;
-      });
+    this.actividadService.get(id).subscribe(actividad => {
+      this.actividad = actividad;
+    });
   }
-  //agregar al session
   addAccion() {
-    if (!isUndefined(this.actividadAsignada)) {
+    if (!isUndefined(this.actividad)) {
       var id = Number.parseInt(
         (document.getElementById("actividades") as HTMLInputElement).value
       );
-      this.planService.getPlanPorActividad(id).subscribe(plan => {
+
+      this.planService.getPlanByActividad(id).subscribe(plan => {
         this.plan = plan;
         console.log(this.plan);
         if (isUndefined(this.plan)) {
           if (this.accion.nombreAccion.trim() != "") {
             this.accion.idAccion = 0;
-            this.accionesService.addAcciones(this.accion);
+            this.accionService.addAcciones(this.accion);
             this.accion.nombreAccion = "";
-            this.acciones = this.accionesService.getAcciones();
+            this.accioness = this.accionService.getAcciones();
           } else {
             alert("Digite una descripcion");
           }
@@ -93,13 +87,14 @@ export class RegistroPlanAccionComponent implements OnInit {
       alert("Seleccione una actividad");
     }
   }
+
   validarAddPlan() {
-    if (!isUndefined(this.actividadAsignada)) {
+    if (!isUndefined(this.actividad)) {
       var id = Number.parseInt(
         (document.getElementById("actividades") as HTMLInputElement).value
       );
-      //obtengo el plan
-      this.planService.getPlanPorActividad(id).subscribe(plan => {
+//obtengo el plan
+      this.planService.getPlanByActividad(id).subscribe(plan => {
         this.plan = plan;
         console.log(this.plan);
         //si es indefinido agrego
@@ -115,13 +110,13 @@ export class RegistroPlanAccionComponent implements OnInit {
   }
   addPlan() {
     this.getAcciones();
-    if (this.acciones.length <= 0) {
+    if (this.accioness.length <= 0) {
       alert("Debe agregar las acciones a realizar");
     } else {
-      this.plan = new PlanAccion();
+      this.plan = new PlanAcciones();
       this.plan.idPlanAcciones = 0;
-      this.plan.acciones = this.acciones;
-      this.plan.actividad = this.actividadAsignada;
+      this.plan.accioness = this.accioness;
+      this.plan.actividad = this.actividad;
       var fecha =
         new Date().getMonth() +
         1 +
@@ -130,21 +125,21 @@ export class RegistroPlanAccionComponent implements OnInit {
         "/" +
         new Date().getFullYear();
       this.plan.fecha = new Date(fecha);
-      console.log(JSON.stringify(this.plan));
-      this.planService.addPlanAccion(this.plan).subscribe(rest => {
-        this.actividadAsignada.estado = "Planeada";
-        this.ActividadAsignadaService.update(this.actividadAsignada).subscribe();
-        this.accionesService.eliminarAcciones();
+      alert(JSON.stringify(this.plan));
+      this.planService.addPlan(this.plan).subscribe(rest => {
+        this.actividad.estado = "Planeada";
+        this.actividadService.update(this.actividad).subscribe();
+        this.accionService.eliminarAcciones();
         this.getAcciones();
       });
     }
   }
-  eliminarAccion(accion: Acciones) {
-    this.accionesService.deleteAccion(accion);
-    this.getAcciones();
-  }
   getAcciones() {
-    this.acciones = this.accionesService.getAcciones();
+    this.accioness = this.accionService.getAcciones();
+  }
+  eliminarAccion(accion: Acciones) {
+    this.accionService.deleteAccion(accion);
+    this.getAcciones();
   }
   goBack(): void {
     this.location.back();

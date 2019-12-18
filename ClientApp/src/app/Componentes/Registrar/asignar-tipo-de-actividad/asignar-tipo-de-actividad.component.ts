@@ -28,6 +28,7 @@ export class AsignarTipoDeActividadComponent implements OnInit {
   tipoAct: TipoActividad;
   submitted = false;
   haveDocente: boolean;
+  actAsig:ActividadAsignada[];
 
   constructor(
     private docenteService: DocenteService,
@@ -39,6 +40,7 @@ export class AsignarTipoDeActividadComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getAll();
     this.getTipoAc();
     this.registerForm = this.formBuilder.group({
       identificacion: [''],
@@ -82,7 +84,9 @@ export class AsignarTipoDeActividadComponent implements OnInit {
       estado: ""
     };
   }
-
+  getAll(){
+    this.actividadAsignadaService.getAll().subscribe(actAsig=>this.actAsig=actAsig);
+  }
 
 
   //llenar el comboBox
@@ -143,29 +147,40 @@ export class AsignarTipoDeActividadComponent implements OnInit {
 
   //agregar 
   addActividad() {
-    if (this.actividadAsignada.horasAsignadas != null && this.actividadAsignada.nombreActividad != null) {
-      if (this.haveDocente==false) {
-        this.actividadAsignada.nombreActividad= this.registerForm.value.tipo_Actividad;
-        this.actividadAsignada.docenteItemId= this.registerForm.value.identificacion;
-        //this.actividadAsignada.docente = this.docente;
-        this.actividadAsignada.horasAsignadas= this.registerForm.value.hora;
-        this.actividadAsignada.estado = "Asignada";
-        console.log(this.actividadAsignada);
-        this.actividadAsignadaService.addActividad(this.actividadAsignada)
-        .subscribe(
-        );
-        
-        //.subscribe(rest => {          this.getActividadesDocente(this.docente.identificacion);
-
-        alert("SE ASIGNO UN TIPO DE ACTIVIDAD");
+    if (this.registerForm.value.hora> 1){
+      if (this.actividadAsignada.horasAsignadas != null && this.actividadAsignada.nombreActividad != null) {
+        if (this.haveDocente==false) {
+          this.actividadAsignada.nombreActividad= this.registerForm.value.tipo_Actividad;
+          this.actividadAsignada.docenteItemId= this.registerForm.value.identificacion;
+          //this.actividadAsignada.docente = this.docente;
+          this.actividadAsignada.horasAsignadas= this.registerForm.value.hora;
+          this.actividadAsignada.estado = "Asignada";
+          console.log(this.actividadAsignada);
+          this.actividadAsignadaService.addActividad(this.actividadAsignada)
+          .subscribe(
+          );
+          
+          //.subscribe(rest => {          this.getActividadesDocente(this.docente.identificacion);
+  
+          alert("SE ASIGNO UN TIPO DE ACTIVIDAD");
+          this.getAll();
+        } else {
+          //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+          alert("Debe buscar un docente");
+           this.getAll();
+        }
       } else {
-        //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-        alert("Debe buscar un docente");
+       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+        alert("Rellene los campos");
+        this.getAll();
       }
-    } else {
-     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-      alert("Rellene los campos");
+
+    }else {
+      alert("Las horas deben ser mayor a 1");
+        this.getAll();
     }
+    
+   
   }
   //actividad por docente
   getActividadesDocente(id: number) {

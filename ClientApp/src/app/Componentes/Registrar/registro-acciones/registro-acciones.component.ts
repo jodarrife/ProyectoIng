@@ -20,7 +20,7 @@ export class RegistroAccionesComponent implements OnInit {
     });
   }
 
-  add() {
+  /*add() {
     this.acciones = this.registerForm.value;
     //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
     this.accionesService.addAcciones(this.acciones)
@@ -43,5 +43,5 @@ export class RegistroAccionesComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.registerForm.reset();
-  }
+  }*/
 }

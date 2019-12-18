@@ -25,6 +25,9 @@ import { AsignarTipoDeActividadComponent } from './Componentes/Registrar/asignar
 import { EnviarEmailComponent } from './Componentes/Complementos/enviar-email/enviar-email.component';
 //Registrar tipo de actividad
 import { RegistroTipoDeActividadComponent } from './Componentes/Registrar/registro-tipo-de-actividad/registro-tipo-de-actividad.component';
+//Plan de accion
+
+
 
 //consulta docente
 import { ConsultaDocenteComponent } from "./Componentes/Consultas/consulta-docente/consulta-docente.component";
@@ -41,6 +44,10 @@ import { ModificarDocenteComponent } from './Componentes/Modificar/modificar-doc
 import { ModificarAccionesComponent } from './Componentes/Modificar/modificar-acciones/modificar-acciones.component';
 //Modificar Tipo Actividad
 import { ModificarTipoActividadComponent } from './Componentes/Modificar/modificar-tipo-actividad/modificar-tipo-actividad.component';
+//MODIFICAR PLAN
+import { ModificarPlanAccionComponent } from './Componentes/Modificar/modificar-plan-accion/modificar-plan-accion.component';
+
+
 import { AuthguardGuard } from './Componentes/ComponetesLogin/Guard/authguard.guard';
 import { AuthDocenteGuard } from './Componentes/ComponetesLogin/Guard/auth-docente.guard';
 
@@ -134,6 +141,8 @@ const routes: Routes = [
   { path: 'ModificarAcciones/:cod_Accion', component: ModificarAccionesComponent },
   //Modificar Tipo Actividad
   { path: 'ModificarTipoActividad/:cod_TipoActividad', component: ModificarTipoActividadComponent },
+//Modificar plan de accion
+{ path: 'ModificaPlanAccion/:idActividad', component: ModificarPlanAccionComponent },
 
 
   //Evidencias

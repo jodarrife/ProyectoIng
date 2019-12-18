@@ -106,7 +106,7 @@ namespace Proyecto.Migrations
                 name: "ActividadesAsignadas",
                 columns: table => new
                 {
-                    codigoActividad = table.Column<int>(nullable: false)
+                    idActividad = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombreActividad = table.Column<string>(nullable: true),
                     DocenteItemId = table.Column<int>(nullable: false),
@@ -115,7 +115,7 @@ namespace Proyecto.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActividadesAsignadas", x => x.codigoActividad);
+                    table.PrimaryKey("PK_ActividadesAsignadas", x => x.idActividad);
                     table.ForeignKey(
                         name: "FK_ActividadesAsignadas_Docentes_DocenteItemId",
                         column: x => x.DocenteItemId,
@@ -132,16 +132,16 @@ namespace Proyecto.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(nullable: false),
                     ActividadId = table.Column<int>(nullable: false),
-                    ActividadAsignadacodigoActividad = table.Column<int>(nullable: true)
+                    ActividadAsignadaidActividad = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Planes", x => x.IdPlanAcciones);
                     table.ForeignKey(
-                        name: "FK_Planes_ActividadesAsignadas_ActividadAsignadacodigoActividad",
-                        column: x => x.ActividadAsignadacodigoActividad,
+                        name: "FK_Planes_ActividadesAsignadas_ActividadAsignadaidActividad",
+                        column: x => x.ActividadAsignadaidActividad,
                         principalTable: "ActividadesAsignadas",
-                        principalColumn: "codigoActividad",
+                        principalColumn: "idActividad",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -176,9 +176,9 @@ namespace Proyecto.Migrations
                 column: "DocenteItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Planes_ActividadAsignadacodigoActividad",
+                name: "IX_Planes_ActividadAsignadaidActividad",
                 table: "Planes",
-                column: "ActividadAsignadacodigoActividad");
+                column: "ActividadAsignadaidActividad");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

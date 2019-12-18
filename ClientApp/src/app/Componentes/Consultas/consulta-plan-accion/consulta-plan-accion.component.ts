@@ -13,8 +13,8 @@ import { PlanDeAccionService } from '../../services/plan-de-accion.service';
 })
 export class ConsultaPlanAccionComponent implements OnInit {
 
-
   docente: Docente;
+
   actividadesAsignadas: ActividadAsignada[];
   planes: PlanAccion[];
 
@@ -29,9 +29,12 @@ export class ConsultaPlanAccionComponent implements OnInit {
     this.getPlanes();
   }
   getPlanes() {
-    this.planService.getPlanesByDocente(this.docente.identificacion).subscribe(planes => {
-      this.planes = planes
-      console.log(this.planes);
+    this.actAsignadasService.getActividadesDocente(this.docente.identificacion).subscribe(actividadesAsignadas => {
+      this.actividadesAsignadas = actividadesAsignadas;
+      //console.log(this.actividadesAsignadas);
+      if (this.actividadesAsignadas.length <= 0) {
+        alert("El docente no tiene actividades asignadas");
+      }
     });
   }
   getDocente() {

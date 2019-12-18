@@ -13,11 +13,11 @@ export class ConsultaAccionesComponent implements OnInit {
   constructor(private accionesService: AccionesService) { }
 
   ngOnInit() {
-    this.getAll();
+    //this.getAll();
   }
 
   getAll() {
-    this.accionesService.getAll().subscribe(acciones => this.acciones = acciones);
+  //  this.accionesService.getAll().subscribe(acciones => this.acciones = acciones);
   }
 
 

@@ -10,9 +10,9 @@ export class FiltroPlanAccionPipe implements PipeTransform {
   transform(planAcciones: PlanAccion[], searchText: string) {
     if (searchText == null) return planAcciones;
     return planAcciones.filter(planAccion =>
-      planAccion.cod_PlanAccion.toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+      planAccion.acciones.toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
       ||
-      planAccion.estado_PlanAccion.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+      planAccion.idPlanAcciones.toString().indexOf(searchText.toLowerCase()) !== -1
 
     );
   }

@@ -17,10 +17,10 @@ export class ModificarAccionesComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
-    this.get();
+   // this.get();
   }
 
-  get(): void {
+ /* get(): void {
     const cod_Accion =
       +this.route.snapshot.paramMap.get('cod_Accion');
     this.accionesService.get(cod_Accion)
@@ -37,7 +37,7 @@ export class ModificarAccionesComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
+*/
 }
 
 

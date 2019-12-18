@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('Estas logueado?', this.myAwesomeService.getUserLoggedId())
+    
 
     $(document).ready(function () {
       $('.menu li:has(ul)').click(function (e) {
@@ -86,23 +86,19 @@ export class SidebarComponent implements OnInit {
   //ocultar
     //JEFE
   public isAuthenticatedJefe(): boolean {
-    console.log( this.jefeService.isAuthenticatedJefe());
+  
     return this.jefeService.isAuthenticatedJefe();
   
   }
   //JEFE
   public isAuthenticatedDoc(): boolean {
-    console.log( this.docenteService.isAuthenticatedDocente());
+    
     return this.docenteService.isAuthenticatedDocente();
   
   }
 //236491452227
 
-  //name
-  userName(): string {
-
-    return this.jefeService.getUserName();
-  }
+ 
   
   //modal
   open(){

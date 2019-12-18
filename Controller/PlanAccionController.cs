@@ -32,14 +32,14 @@ namespace DocenteSharpHTTP.Controllers
             .ThenInclude(t=>t.DocenteItem)
             .ToListAsync();
         }
-         [HttpGet("docente={idDocente}")]
-        public async Task<ActionResult<IEnumerable<PlanAcciones>>> GetPlanes(int idDocente)
+         [HttpGet("docente={identificacion}")]
+        public async Task<ActionResult<IEnumerable<PlanAcciones>>> GetPlanes(int identificacion)
         {
             return await _context.Planes
             .Include(t => t.Acciones)
             .Include(t => t.ActividadAsignada)
             .ThenInclude(t => t.DocenteItem)
-            .Where(t=>t.ActividadAsignada.DocenteItem.identificacion==idDocente)
+            .Where(t=>t.ActividadAsignada.DocenteItem.identificacion==identificacion)
             .ToListAsync();
         }
 
@@ -78,7 +78,7 @@ namespace DocenteSharpHTTP.Controllers
         [HttpPost]
         public async Task<ActionResult<PlanAcciones>> PostPlan(PlanAcciones plan)
         {
-        plan.ActividadId=plan.ActividadAsignada.codigoActividad;
+        plan.ActividadId=plan.ActividadAsignada.idActividad;
         plan.ActividadAsignada=null;
            
             _context.Planes.Add(plan);

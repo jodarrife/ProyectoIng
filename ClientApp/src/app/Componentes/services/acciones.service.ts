@@ -31,17 +31,17 @@ export class AccionesService {
 
   /** POST: add a new Acciones to the server */
   addAcciones(accion: Acciones) {
-    let acciones: Acciones[] = [];
-    if (sessionStorage.getItem("acciones") != null) {
-      acciones = JSON.parse(sessionStorage.getItem("acciones"));
+    let accioness: Acciones[] = [];
+    if (sessionStorage.getItem("accioness") != null) {
+      accioness = JSON.parse(sessionStorage.getItem("accioness"));
     }
-    acciones.push(accion);
-    sessionStorage.setItem("Acciones", JSON.stringify(acciones));
+    accioness.push(accion);
+    sessionStorage.setItem("accioness", JSON.stringify(accioness));
     alert("Accion Agregada");
   }
   getAcciones(): Acciones[] {
-    if (sessionStorage.getItem("acciones") != null) {
-      return JSON.parse(sessionStorage.getItem("acciones"));
+    if (sessionStorage.getItem("accioness") != null) {
+      return JSON.parse(sessionStorage.getItem("accioness"));
     } else {
       return [];
     }
@@ -61,21 +61,21 @@ export class AccionesService {
     );
   }
   deleteAccion(accion: Acciones) {
-    let acciones: Acciones[] = JSON.parse(sessionStorage.getItem("acciones"));
+    let accioness: Acciones[] = JSON.parse(sessionStorage.getItem("accioness"));
     var i, j;
     i = 0;
 
-    acciones.forEach(element => {
+    accioness.forEach(element => {
       if (JSON.stringify(element) == JSON.stringify(accion)) {
-        +acciones.splice(i, 1);
+        +accioness.splice(i, 1);
       } else {
         i++;
       }
     });
-    sessionStorage.setItem("acciones", JSON.stringify(acciones));
+    sessionStorage.setItem("accioness", JSON.stringify(accioness));
   }
   eliminarAcciones() {
-    sessionStorage.removeItem('acciones');
+    sessionStorage.removeItem('accioness');
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -41,7 +41,7 @@ namespace Proyecto.Migrations
 
             modelBuilder.Entity("DocenteSharpHTTP.Models.ActividadAsignada", b =>
                 {
-                    b.Property<int>("codigoActividad")
+                    b.Property<int>("idActividad")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -58,7 +58,7 @@ namespace Proyecto.Migrations
                     b.Property<string>("nombreActividad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("codigoActividad");
+                    b.HasKey("idActividad");
 
                     b.HasIndex("DocenteItemId");
 
@@ -233,7 +233,7 @@ namespace Proyecto.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ActividadAsignadacodigoActividad")
+                    b.Property<int?>("ActividadAsignadaidActividad")
                         .HasColumnType("int");
 
                     b.Property<int>("ActividadId")
@@ -244,7 +244,7 @@ namespace Proyecto.Migrations
 
                     b.HasKey("IdPlanAcciones");
 
-                    b.HasIndex("ActividadAsignadacodigoActividad");
+                    b.HasIndex("ActividadAsignadaidActividad");
 
                     b.ToTable("Planes");
                 });
@@ -288,7 +288,7 @@ namespace Proyecto.Migrations
                 {
                     b.HasOne("DocenteSharpHTTP.Models.ActividadAsignada", "ActividadAsignada")
                         .WithMany()
-                        .HasForeignKey("ActividadAsignadacodigoActividad");
+                        .HasForeignKey("ActividadAsignadaidActividad");
                 });
 #pragma warning restore 612, 618
         }

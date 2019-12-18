@@ -2,17 +2,33 @@
     <h2>Consulta Plan de Acciones</h2>
     <table class="table">
         <tr>
+            <th>ID</th>
             <th>Actividad</th>
             <th>horas</th>
             <th>Estado</th>
             <th></th>
 
         </tr>
-        <tr *ngFor="let p of planes">
-            <td>{{p.actividadAsignada.nombreActividad}}</td>
-            <td>{{p.actividadAsignada.horasAsignadas}}</td>
-            <td>{{p.actividadAsignada.estado}}</td>
-            <td *ngIf="p.ActividadAsignada.estado==='Planeada'"><a routerLink="/accionesList/{{p.idPlanAcciones}}">Registrar descripciones</a></td>
+        <tr *ngFor="let ac of actividadesAsignadas">
+            <td>{{ac.idActividad}}</td>
+            <td>{{ac.nombreActividad}}</td>
+            <td>{{ac.horasAsignadas}}</td>
+            <td>{{ac.estado}}</td>
+            <td *ngIf="ac.estado==='Asignada'">
+                <a routerLink="/RegistroPlanDeAccion">
+                    <span class="table-remove">
+                        <button type="button" class="btn btn-success btn-rounded btn-sm my-0">
+                            Registrar Plan de Accion
+                        </button>
+                    </span>
+                </a>
+            <td *ngIf="ac.estado==='Planeada'">
+                <a routerLink="/ModificaPlanAccion/{{ac.idActividad}}">
+                    <span class="table-remove">
+                        <button type="button" class="btn btn-success btn-rounded btn-sm my-0">Ver
+                        </button>
+                    </span>
+                </a>
         </tr>
     </table>
 </div>

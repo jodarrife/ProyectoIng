@@ -23,7 +23,6 @@ export class RegistroTipoDeActividadComponent implements OnInit {
   }
   add() {
     this.tipoActividad = this.registerForm.value;
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
     this.tipoActividadService.addTipoActividad(this.tipoActividad)
       .subscribe(
       );

@@ -9,9 +9,9 @@ export class FiltroAccionesPipe implements PipeTransform {
   transform(acciones: Acciones[], searchText: string) {
     if (searchText == null) return acciones;
     return acciones.filter(accion =>
-      accion.cod_Accion.toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+      accion.idAccion.toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
         ||
-        accion.nombre_Accion.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+        accion.nombreAccion.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
        
     );
 }

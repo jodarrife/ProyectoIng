@@ -36,8 +36,8 @@ export class ActividadAsignadaService {
       catchError(this.handleError<ActividadAsignada>(`getActividad id=${id}`))
     );
   }
-  getActividadesDocente(idDocente: number): Observable<ActividadAsignada[]> {
-    const url = `${this.baseUrl + 'api/ActividadAsignada'}/Docente=${idDocente}`;
+  getActividadesDocente(identificacion: number): Observable<ActividadAsignada[]> {
+    const url = `${this.baseUrl + 'api/ActividadAsignada'}/Docente=${identificacion}`;
     return this.http.get<ActividadAsignada[]>(url).pipe(
       tap(_ => console.log('Se Consulta la información')),
       catchError(this.handleError<ActividadAsignada[]>('getAll', []))
@@ -74,4 +74,3 @@ export class ActividadAsignadaService {
 
   
 }
-

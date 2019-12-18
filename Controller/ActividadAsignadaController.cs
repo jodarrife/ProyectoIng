@@ -56,10 +56,10 @@ namespace DocenteSharpHTTP.Controllers
         }
 
         // GET: api/Acciones/1
-        [HttpGet("{codigo}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ActividadAsignada>> GetActividadAsignadasItem(int id)
         {
-            var actividad = await _context.ActividadesAsignadas.Include(t => t.DocenteItem).FirstOrDefaultAsync(i => i.codigoActividad == id);
+            var actividad = await _context.ActividadesAsignadas.Include(t => t.DocenteItem).FirstOrDefaultAsync(i => i.idActividad == id);
             if (actividad == null)
             {
                 return NotFound();
@@ -68,10 +68,10 @@ namespace DocenteSharpHTTP.Controllers
         }
      
 
-        [HttpGet("DocenteItem={DocenteItemId}")]
-        public async Task<ActionResult<IEnumerable<ActividadAsignada>>> GetActividadAsignadasDocente(int DocenteItemId)
+        [HttpGet("Docente={identificacion}")]
+        public async Task<ActionResult<IEnumerable<ActividadAsignada>>> GetActividadAsignadasDocente(int identificacion)
         {
-            return await _context.ActividadesAsignadas.Include(t => t.DocenteItem).Where(i => i.DocenteItemId == DocenteItemId ).ToListAsync();
+            return await _context.ActividadesAsignadas.Include(t => t.DocenteItem).Where(i => i.DocenteItemId == identificacion ).ToListAsync();
         }
         /*[HttpGet("TipoActividad={tipoActividadId}")]
         public async Task<ActionResult<IEnumerable<ActividadAsignada>>> GetActividadAsignadasTipoActivadad(int idTipo)
@@ -89,13 +89,13 @@ namespace DocenteSharpHTTP.Controllers
             }
             _context.ActividadesAsignadas.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetActividadAsignadasItem), new { id = item.codigoActividad }, item);
+            return CreatedAtAction(nameof(GetActividadAsignadasItem), new { id = item.idActividad }, item);
         }
         // PUT: api/Acciones/5
-        [HttpPut("{codigo}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutActicidadesAsignadas(int id, ActividadAsignada item)
         {
-            if (id != item.codigoActividad)
+            if (id != item.idActividad)
             {
                 return BadRequest();
             }
